@@ -9,7 +9,7 @@
     function fillStep4() {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
-        
+
     }
 
     function addFamilyMember() {
@@ -24,11 +24,13 @@
         var select = tr.querySelector("select");
         fillSelectDefaulOptions(select, window.__stopiniePok__);
 
-        
-        var removeFamilyMemberBtn = document.querySelector(".removeFamilyMemberBtn");
-        removeFamilyMemberBtn.addEventListener("click", table.removeChild(tr), false)
- 
-        
+
+        var removeFamilyMemberBtn = tr.querySelector(".removeFamilyMemberBtn");
+        removeFamilyMemberBtn.addEventListener("click", function () {
+            table.removeChild(tr)
+        }, false)
+
+
         document.querySelector("#krok4 table").appendChild(tr);
     }
 
