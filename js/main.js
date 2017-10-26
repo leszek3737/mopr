@@ -32,12 +32,12 @@
         //usuwanie
         var table = document.querySelector("#krok4 table");
         var wynikTabele = document.querySelector(".wynik table");
-        
+
         var removeFamilyMemberBtn = tr.querySelector(".removeFamilyMemberBtn");
         removeFamilyMemberBtn.addEventListener("click", function () {
             table.removeChild(tr);
             wynikTabele.removeChild(tr);
-        }, false) 
+        }, false)
 
         //dodawanie do  html
         document.querySelector("#krok4 table").appendChild(tr);
