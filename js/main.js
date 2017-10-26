@@ -9,7 +9,6 @@
     function fillStep4() {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
-
     }
 
     function addFamilyMember() {
