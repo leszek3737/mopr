@@ -14,17 +14,20 @@
 
     function addFamilyMember() {
         var tr = document.createElement("tr");
+        var table = document.querySelector("#krok4 table");
         tr.classList.add("czlonekRodziny");
         tr.innerHTML = "<td><select></select></td>";
         tr.innerHTML += "<td><input id='ileOs0' type='number'></td>";
         tr.innerHTML += "<td><input id='przyG0' type='number'></td>";
         tr.innerHTML += "<td><button class='removeFamilyMemberBtn'> tak</button></td>";
-        
+
         var select = tr.querySelector("select");
         fillSelectDefaulOptions(select, window.__stopiniePok__);
+
         
-        
-        tr.querySelector(".removeFamilyMemberBtn")
+        var removeFamilyMemberBtn = document.querySelector(".removeFamilyMemberBtn");
+        removeFamilyMemberBtn.addEventListener("click", table.removeChild(tr), false)
+ 
         
         document.querySelector("#krok4 table").appendChild(tr);
     }
