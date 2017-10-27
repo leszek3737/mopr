@@ -26,3 +26,6 @@
  .nonW {
      display: none;
  }
+.view {
+    display: block;
+}
