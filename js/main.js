@@ -9,6 +9,7 @@
     function fillStep4() {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
+        buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik")
     }
 
     function addFamilyMember() {
@@ -54,13 +55,14 @@
         });
     }
 
-    function buttonNextStep(button, begin, target, changeVisibility) {
+    function buttonNextStep(button, begin, target) {
         var step = document.querySelector(button);
         step.addEventListener("click", function () {
+            console.log(button);
             var beginStep = document.querySelector(begin);
-            BeginNext.className = "nonW";
+            beginStep.className = "nonW";
             var nextStep = document.querySelector(target);
-            nextStep.className = "view"
+            nextStep.className += " view"
         }, false)
 
     }
