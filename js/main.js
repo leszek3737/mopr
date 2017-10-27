@@ -53,4 +53,15 @@
             container.appendChild(option);
         });
     }
+
+    function buttonNextStep(button, begin, target, changeVisibility) {
+        var step = document.querySelector(button);
+        step.addEventListener("click", function () {
+            var beginStep = document.querySelector(begin);
+            BeginNext.className = "nonW";
+            var nextStep = document.querySelector(target);
+            nextStep.className = "view"
+        }, false)
+
+    }
 })();
