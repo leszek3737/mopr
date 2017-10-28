@@ -4,7 +4,12 @@
     document.addEventListener("DOMContentLoaded", function () {
         fillSelectDefaulOptions(document.querySelector("#dps select"), window.__DPS__);
         fillStep4();
+        fillStep3();
     });
+
+    function fillStep3() {
+        radioInput("#hasFamily label input");
+    }
 
     function fillStep4() {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
@@ -65,5 +70,16 @@
             nextStep.className += " view"
         }, false)
 
+    }
+
+    function radioInput(radioClass) {  
+        var radio = document.querySelectorAll(radioClass);     
+        radio.forEach(function (element) {    
+            element.onchange = changeEventHandler;  
+        });     
+        function changeEventHandler(event) {    
+            console.log(event);
+            console.log(event.target.value);  
+        }
     }
 })();

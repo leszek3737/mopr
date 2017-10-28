@@ -25,8 +25,8 @@
     <section class="krok">
         <fieldset id="hasFamily">
             <legend>Krok 2 - Czy mieszkaniec posiada żyjącą rodzinę ?(żonę, dzieci, wnuki, rodziców, dziadków itd.)</legend>
-            <label for=""><input type="radio" name="rodzina" class="rodzina" checked /> nie </label>
-            <label for=""><input type="radio" name="rodzina" class="rodzina"> tak</label>
+            <label><input type="radio" name="rodzina" value="0" checked /> nie </label>
+            <label><input type="radio" name="rodzina" value="1"> tak</label>
         </fieldset>
         <button class="nextStep">dalej</button>
     </section>
@@ -54,7 +54,6 @@
                 <p>-</p>
             </div>
             <table>
-
                 <tr>
                     <th>Rodzaj pokrewieństwa</th>
                     <th>Ilość osób w gospodarstwie domowym</th>
