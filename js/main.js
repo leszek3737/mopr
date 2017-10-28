@@ -64,8 +64,7 @@
         var step = document.querySelector(button);
         step.addEventListener("click", function () {
             console.log(button);
-            var beginStep = document.querySelector(begin);
-            beginStep.className = "nonW";
+            invisibility(begin);
             var nextStep = document.querySelector(target);
             nextStep.className += " view"
         }, false)
@@ -78,8 +77,11 @@
             element.onchange = changeEventHandler;  
         });     
         function changeEventHandler(event) {    
-            console.log(event);
             console.log(event.target.value);  
         }
+    }
+    function invisibility(target){
+        var targetStep = document.querySelector(target);
+            targetStep.className = "nonW";
     }
 })();
