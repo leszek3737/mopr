@@ -8,21 +8,21 @@
 </head>
 
 <body>
-    <section class="krok">
+    <section id="krok1" class="krok view">
         <legend>Krok 1 - wybierz dom pomocy społecznej </legend>
         <fieldset id="dps">
             <select name="dps"></select>
         </fieldset>
         <button class="nextStep">dalej</button>
     </section>
-    <section class="krok">
+    <section id="krok2" class="krok">
         <fieldset id="dochMiesz">
             <legend>Krok 2 -Podaj przychód netto</legend>
             <input type="number" step=0.01>
         </fieldset>
         <button class="nextStep">dalej</button>
     </section>
-    <section class="krok">
+    <section id="krok3" class="krok">
         <fieldset id="hasFamily">
             <legend>Krok 2 - Czy mieszkaniec posiada żyjącą rodzinę ?(żonę, dzieci, wnuki, rodziców, dziadków itd.)</legend>
             <label><input type="radio" name="rodzina" value="0" checked /> nie </label>

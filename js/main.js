@@ -3,18 +3,32 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         fillSelectDefaulOptions(document.querySelector("#dps select"), window.__DPS__);
+        fillStep1();
+        fillStep2();
         fillStep4();
         fillStep3();
     });
 
+    function fillStep1(){
+        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2")
+    }
+    
+    function fillStep2(){
+        buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3")
+    }
+        
     function fillStep3() {
         radioInput("#hasFamily label input");
+        if (valueRadio == 0) {
+                invisibility("#krok4");
+                buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik")
+            } 
     }
 
     function fillStep4() {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
-        buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik")
+        buttonNextStep("#krok4 .nextStep", "#krok4", "#wynik");
     }
 
     function addFamilyMember() {
@@ -60,28 +74,39 @@
         });
     }
 
-    function buttonNextStep(button, begin, target) {
+    function buttonNextStep(button, begin, target) { // button -adres buttonu,  begin - adres obecnego pozipomu, target = adres przyszłego
         var step = document.querySelector(button);
         step.addEventListener("click", function () {
             console.log(button);
             invisibility(begin);
-            var nextStep = document.querySelector(target);
-            nextStep.className += " view"
+            document.querySelector(target).classList.toggle("view")
+            
         }, false)
 
     }
-
+var valueRadio = 0;
     function radioInput(radioClass) {  
         var radio = document.querySelectorAll(radioClass);     
         radio.forEach(function (element) {    
             element.onchange = changeEventHandler;  
-        });     
-        function changeEventHandler(event) {    
-            console.log(event.target.value);  
+        });    
+        
+
+        function changeEventHandler(event) { 
+            valueRadio = event.target.value
+            if (valueRadio == 1) {
+                console.log("1");
+                buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4")
+            } else {
+                invisibility("#krok4");
+                buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik")
+            }
+
         }
     }
-    function invisibility(target){
+
+    function invisibility(target) {
         var targetStep = document.querySelector(target);
-            targetStep.className = "nonW";
+        targetStep.className = "nonW";
     }
 })();

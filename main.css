@@ -29,3 +29,9 @@
 .view {
     display: block;
 }
+.krok .wynik {display: none}
+.krok.view .wynik.view {
+    display: block;
+}
+
+
