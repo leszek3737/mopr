@@ -6,7 +6,7 @@
         fillStep1();
         fillStep2();
         fillStep4();
-        fillStep3();
+
     });
 
     function fillStep1() {
@@ -14,11 +14,17 @@
     }
 
     function fillStep2() {
-        buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3", downloadDataToStep2)
+        buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3", downloadDataToStep2);
     }
 
     function fillStep3() {
-        radioInput("#hasFamily label input");
+        if (odp.gminy == 0) {
+            buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
+            invisibility("#tableWynik");
+        } else {
+            radioInput("#hasFamily label input");
+        }
+
     }
 
     function fillStep4() {
@@ -96,7 +102,8 @@
             if (valueRadio == 1) {
                 buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", )
             } else {
-                buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", )
+                buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
+                invisibility("#tableWynik");
             }
         }
     }
@@ -106,11 +113,12 @@
         targetStep.className = "nonW";
     }
 
+
+    // pobieranie danych i oblicznia
     var odp = {
         costDps: 0,
         mieszkaDps: 0,
-        MieszDps: 0,
-        Gminy: 0,
+        gminy: 0,
         licz: 1,
         rodzi: [], // rodzaj rodziny pobrany z pola
         odplRo: [], // odpłatność danej rodziny 
@@ -124,7 +132,23 @@
         var dpsTym = window.__DPS__[wyborDps];
         odp.costDps = dpsTym.koszt;
         var mieszTym = document.getElementById("dochMiesz").value;
-        odp.mieszkaDps = Math.round(0.7 * mieszTym * 100) /100;
-        console.log(odp.mieszkaDps);
+        odp.mieszkaDps = Math.round(0.7 * mieszTym * 100) / 100;
+        if (odp.mieszkaDps >= odp.costDps) {
+            odp.mieszkaDps = odp.costDps;
+        }
+        odp.gminy = odp.costDps - odp.mieszkaDps;
+        fillStep3();
+        console.log(odp.mieszkaDps, odp.gminy);
     }
+
+    //    function downloadDataToStep4() {
+    //        
+    //    }
+    function displayDataFromStep2() {
+        document.getElementById('costDps').innerHTML = odp.costDps;
+        document.getElementById('costMieszkaniec').innerHTML = odp.mieszkaDps;
+        document.getElementById('costGmina').innerHTML = odp.gminy;
+
+    }
+
 })();
