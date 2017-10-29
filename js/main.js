@@ -18,17 +18,15 @@
     }
         
     function fillStep3() {
-        radioInput("#hasFamily label input");
-        if (valueRadio == 0) {
-                invisibility("#krok4");
-                buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik")
-            } 
+        radioInput("#hasFamily label input");    
     }
 
     function fillStep4() {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
-        buttonNextStep("#krok4 .nextStep", "#krok4", "#wynik");
+       
+        buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik"); 
+        
     }
 
     function addFamilyMember() {
@@ -38,7 +36,7 @@
         tr.innerHTML = "<td><select></select></td>";
         tr.innerHTML += "<td><input id='ileOs0' type='number'></td>";
         tr.innerHTML += "<td><input id='przyG0' type='number'></td>";
-        tr.innerHTML += "<td><button class='removeFamilyMemberBtn'> tak</button></td>";
+        tr.innerHTML += "<td><button class='removeFamilyMemberBtn'>usuń</button></td>";
         var select = tr.querySelector("select");
         fillSelectDefaulOptions(select, window.__stopiniePok__);
         // wynik
@@ -55,7 +53,7 @@
         var removeFamilyMemberBtn = tr.querySelector(".removeFamilyMemberBtn");
         removeFamilyMemberBtn.addEventListener("click", function () {
             table.removeChild(tr);
-            wynikTabele.removeChild(tr);
+            wynikTabele.removeChild(wynikTr);
         }, false)
 
         //dodawanie do  html
@@ -77,7 +75,6 @@
     function buttonNextStep(button, begin, target) { // button -adres buttonu,  begin - adres obecnego pozipomu, target = adres przyszłego
         var step = document.querySelector(button);
         step.addEventListener("click", function () {
-            console.log(button);
             invisibility(begin);
             document.querySelector(target).classList.toggle("view")
             
@@ -93,15 +90,12 @@ var valueRadio = 0;
         
 
         function changeEventHandler(event) { 
-            valueRadio = event.target.value
+            valueRadio = event.target.value;
             if (valueRadio == 1) {
-                console.log("1");
                 buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4")
             } else {
-                invisibility("#krok4");
                 buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik")
-            }
-
+            } 
         }
     }
 

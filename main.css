@@ -3,7 +3,8 @@
      margin: 50px;
      border: 1px solid black;
      padding: 15px;
-     max-width: 800px;
+     width: 600px;
+     height: 400px;
  }
 
  .krok table {
@@ -29,9 +30,13 @@
 .view {
     display: block;
 }
-.krok .wynik {display: none}
-.krok.view .wynik.view {
+.krok, .wynik {display: none}
+.krok.view,.wynik.view {
     display: block;
+}
+.nextStep {
+    float: right;
+    
 }
 
 
