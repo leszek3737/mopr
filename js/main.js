@@ -21,6 +21,11 @@
         if (odp.gminy == 0) {
             buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
             invisibility("#tableWynik");
+            var rodzTym = document.querySelector("#hasFamily")
+            rodzTym.innerHTML = "<h3>Mieszkaniec osiągną maxymalną odpłatność naciśnij dalej żeby zobaczyć wynik<h3>";
+
+            document.querySelector("#krok3").appendChild(rodzTym);
+
         } else {
             radioInput("#hasFamily label input");
         }
