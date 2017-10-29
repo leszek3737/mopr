@@ -55,11 +55,11 @@
         var wynikTr = document.createElement("tr");
         wynikTr.classList.add("WynikCzłonekRodziny");
         wynikTr.id = ("WynikCzłonekRodziny" + odp.licz);
-        wynikTr.innerHTML = "<td>-</td>";
+        wynikTr.innerHTML = "<td class='wynikRodzaj'>-</td>";
+        wynikTr.innerHTML += "<td class='wynikOsGosDom'>-</td>";
+        wynikTr.innerHTML += "<td class='wynikDochGosDom'>-</td>";
         wynikTr.innerHTML += "<td>-</td>";
-        wynikTr.innerHTML += "<td>-</td>";
-        wynikTr.innerHTML += "<td>-</td>";
-        //usuwanie
+//        usuwanie
         var table = document.querySelector("#krok4 table");
         var wynikTabele = document.querySelector(".wynik table");
 
@@ -155,7 +155,7 @@
             odp.rodzi[aw] = document.querySelector("#czlonekRodziny" + aw + " select").value;
             odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .osGosDom").value;
             odp.iloscRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
-            console.log(odp.rodzi[aw], odp.odplRo[aw], odp.iloscRo[aw]);
+            displayDataFromStep4(aw);
         }
 
     }
@@ -164,7 +164,11 @@
         document.getElementById('costDps').innerHTML = odp.costDps;
         document.getElementById('costMieszkaniec').innerHTML = odp.mieszkaDps;
         document.getElementById('costGmina').innerHTML = odp.gminy;
-
+    }
+    function displayDataFromStep4(n){ 
+            document.querySelector("#WynikCzłonekRodziny" + n + " .wynikRodzaj").innerHTML = odp.rodzi[n];
+            document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOsGosDom").innerHTML = odp.odplRo[n];
+            document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = odp.iloscRo[n];
     }
 
 })();
