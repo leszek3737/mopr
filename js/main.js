@@ -44,16 +44,17 @@
         // Krok 4
         var tr = document.createElement("tr");
         tr.classList.add("czlonekRodziny");
-        tr.id = ("czlonekRodziny"+odp.licz)
+        tr.id = ("czlonekRodziny"+odp.licz);
         tr.innerHTML = "<td><select></select></td>";
-        tr.innerHTML += "<td><input id='ileOs0' type='number'></td>";
-        tr.innerHTML += "<td><input id='przyG0' type='number'></td>";
-        tr.innerHTML += "<td><button class='removeFamilyMemberBtn'>usuń</button></td>";
+        tr.innerHTML += "<td><input class='osGosDom' type='number'></td>";
+        tr.innerHTML += "<td><input class='dochGosDom' type='number'></td>";
+        tr.innerHTML += "<td><button class='removeFamilyMemberBtn' >usuń</button></td>";
         var select = tr.querySelector("select");
         fillSelectDefaulOptions(select, window.__stopiniePok__);
         // wynik
         var wynikTr = document.createElement("tr");
         wynikTr.classList.add("WynikCzłonekRodziny");
+        wynikTr.id = ("WynikCzłonekRodziny"+odp.licz);
         wynikTr.innerHTML = "<td>-</td>";
         wynikTr.innerHTML += "<td>-</td>";
         wynikTr.innerHTML += "<td>-</td>";
