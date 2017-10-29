@@ -123,6 +123,8 @@
         var wyborDps = document.querySelector("#dps select").value;
         var dpsTym = window.__DPS__[wyborDps];
         odp.costDps = dpsTym.koszt;
-        console.log(odp.costDps);
+        var mieszTym = document.getElementById("dochMiesz").value;
+        odp.mieszkaDps = Math.round(0.7 * mieszTym * 100) /100;
+        console.log(odp.mieszkaDps);
     }
 })();
