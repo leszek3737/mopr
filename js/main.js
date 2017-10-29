@@ -36,7 +36,7 @@
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
 
-        buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik", );
+        buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik", downloadDataToStep4);
 
     }
 
@@ -44,7 +44,7 @@
         // Krok 4
         var tr = document.createElement("tr");
         tr.classList.add("czlonekRodziny");
-        tr.id = ("czlonekRodziny"+odp.licz);
+        tr.id = ("czlonekRodziny" + odp.licz);
         tr.innerHTML = "<td><select></select></td>";
         tr.innerHTML += "<td><input class='osGosDom' type='number'></td>";
         tr.innerHTML += "<td><input class='dochGosDom' type='number'></td>";
@@ -54,7 +54,7 @@
         // wynik
         var wynikTr = document.createElement("tr");
         wynikTr.classList.add("WynikCzłonekRodziny");
-        wynikTr.id = ("WynikCzłonekRodziny"+odp.licz);
+        wynikTr.id = ("WynikCzłonekRodziny" + odp.licz);
         wynikTr.innerHTML = "<td>-</td>";
         wynikTr.innerHTML += "<td>-</td>";
         wynikTr.innerHTML += "<td>-</td>";
@@ -72,7 +72,7 @@
         //dodawanie do  html
         document.querySelector("#krok4 table").appendChild(tr);
         document.querySelector(".wynik table").appendChild(wynikTr);
-        odp.licz =odp.licz +1;
+        odp.licz = odp.licz + 1;
 
     }
 
@@ -127,10 +127,10 @@
         costDps: 0,
         mieszkaDps: 0,
         gminy: 0,
-        licz: 1,
+        licz: 0,
         rodzi: [], // rodzaj rodziny pobrany z pola
-        odplRo: [], // odpłatność danej rodziny 
-        licznikX: [], // ilość osób w danej rodzinie
+        odplRo: [], // odpłatność dansej rodziny 
+        iloscRo: [], // ilość osób w danej rodzinie
         rod: [0, 0, 0, 0, 0, 0], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
         licznik: [], // ilość rodzin w poszczegulnych grupach 
     }
@@ -149,9 +149,17 @@
         console.log(odp.mieszkaDps, odp.gminy);
     }
 
-    //    function downloadDataToStep4() {
-    //        
-    //    }
+    function downloadDataToStep4() {
+        var aw = 0;
+        for (var i = odp.licz - 1; i >= 0; i-- & aw++) {
+            odp.rodzi[aw] = document.querySelector("#czlonekRodziny" + aw + " select").value;
+            odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .osGosDom").value;
+            odp.iloscRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
+            console.log(odp.rodzi[aw], odp.odplRo[aw], odp.iloscRo[aw]);
+        }
+
+    }
+
     function displayDataFromStep2() {
         document.getElementById('costDps').innerHTML = odp.costDps;
         document.getElementById('costMieszkaniec').innerHTML = odp.mieszkaDps;
