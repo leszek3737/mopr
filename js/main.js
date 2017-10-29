@@ -9,24 +9,24 @@
         fillStep3();
     });
 
-    function fillStep1(){
-        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2")
+    function fillStep1() {
+        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", )
     }
-    
-    function fillStep2(){
-        buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3")
+
+    function fillStep2() {
+        buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3", downloadDataToStep2)
     }
-        
+
     function fillStep3() {
-        radioInput("#hasFamily label input");    
+        radioInput("#hasFamily label input");
     }
 
     function fillStep4() {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
-       
-        buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik"); 
-        
+
+        buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik", );
+
     }
 
     function addFamilyMember() {
@@ -72,35 +72,57 @@
         });
     }
 
-    function buttonNextStep(button, begin, target) { // button -adres buttonu,  begin - adres obecnego pozipomu, target = adres przyszłego
+    function buttonNextStep(button, begin, target, functionIn) { // button -adres buttonu,  begin - adres obecnego pozipomu, target = adres przyszłego, functionIn - funkcjia zawarta
         var step = document.querySelector(button);
         step.addEventListener("click", function () {
             invisibility(begin);
-            document.querySelector(target).classList.toggle("view")
-            
+            document.querySelector(target).classList.toggle("view");
+            functionIn();
         }, false)
 
     }
-var valueRadio = 0;
+
+    var valueRadio = 0;
+
     function radioInput(radioClass) {  
         var radio = document.querySelectorAll(radioClass);     
         radio.forEach(function (element) {    
             element.onchange = changeEventHandler;  
         });    
-        
+
 
         function changeEventHandler(event) { 
             valueRadio = event.target.value;
             if (valueRadio == 1) {
-                buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4")
+                buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", )
             } else {
-                buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik")
-            } 
+                buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", )
+            }
         }
     }
 
     function invisibility(target) {
         var targetStep = document.querySelector(target);
         targetStep.className = "nonW";
+    }
+
+    var odp = {
+        costDps: 0,
+        mieszkaDps: 0,
+        MieszDps: 0,
+        Gminy: 0,
+        licz: 1,
+        rodzi: [], // rodzaj rodziny pobrany z pola
+        odplRo: [], // odpłatność danej rodziny 
+        licznikX: [], // ilość osób w danej rodzinie
+        rod: [0, 0, 0, 0, 0, 0], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
+        licznik: [], // ilość rodzin w poszczegulnych grupach 
+    }
+
+    function downloadDataToStep2() {
+        var wyborDps = document.querySelector("#dps select").value;
+        var dpsTym = window.__DPS__[wyborDps];
+        odp.costDps = dpsTym.koszt;
+        console.log(odp.costDps);
     }
 })();

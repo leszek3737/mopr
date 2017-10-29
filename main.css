@@ -3,8 +3,8 @@
      margin: 50px;
      border: 1px solid black;
      padding: 15px;
-     width: 600px;
-     height: 400px;
+     width: 400px;
+     height: 300px;
  }
 
  .krok table {
@@ -27,16 +27,22 @@
  .nonW {
      display: none;
  }
-.view {
-    display: block;
-}
-.krok, .wynik {display: none}
-.krok.view,.wynik.view {
-    display: block;
-}
-.nextStep {
-    float: right;
-    
-}
 
+ .view {
+     display: block;
+ }
 
+ .krok,
+ .wynik {
+     display: none
+ }
+
+ .krok.view,
+ .wynik.view {
+     display: block;
+ }
+
+ .nextStep {
+     float: right;
+
+ }
