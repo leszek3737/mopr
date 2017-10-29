@@ -44,6 +44,7 @@
         // Krok 4
         var tr = document.createElement("tr");
         tr.classList.add("czlonekRodziny");
+        tr.id = ("czlonekRodziny"+odp.licz)
         tr.innerHTML = "<td><select></select></td>";
         tr.innerHTML += "<td><input id='ileOs0' type='number'></td>";
         tr.innerHTML += "<td><input id='przyG0' type='number'></td>";
@@ -70,6 +71,7 @@
         //dodawanie do  html
         document.querySelector("#krok4 table").appendChild(tr);
         document.querySelector(".wynik table").appendChild(wynikTr);
+        odp.licz =odp.licz +1;
 
     }
 
