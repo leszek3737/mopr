@@ -1,16 +1,22 @@
 (function () {
     'use strict';
-
+    
     document.addEventListener("DOMContentLoaded", function () {
         fillSelectDefaulOptions(document.querySelector("#dps select"), window.__DPS__);
         fillStep1();
         fillStep2();
         fillStep4();
-
+        (function() { var ii = window.__iloscstopiniePok__;
+        for (var n = 0; n <= ii; n++){
+            odp.rod[n] = 0;
+            odp.licznik[n] = 0;
+        }}())
     });
-
+    
+    
     function fillStep1() {
         buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", )
+      
     }
 
     function fillStep2() {
@@ -132,7 +138,7 @@
         rodzi: [], // rodzaj rodziny pobrany z pola
         odplRo: [], // odpłatność dansej rodziny 
         iloscRo: [], // ilość osób w danej rodzinie
-        rod: [0, 0, 0, 0, 0, 0], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
+        rod: [], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
         licznik: [], // ilość rodzin w poszczegulnych grupach 
     }
 
@@ -160,7 +166,7 @@
             calculationPayment(aw);
             
         }
-
+                nieMamPomysluNaNazwęXD();
     }
 
     function calculationPayment(n) {
@@ -181,8 +187,14 @@
         odp.odplRo[n] = od;
     }
     
-
-
+    function nieMamPomysluNaNazwęXD(){
+        var i = odp.licz - 1;
+        for (var n = 0; n <= i; n++) {
+            var a = odp.rodzi[n];
+            odp.licznik[a] = odp.licznik[a] + 1;
+            odp.rod[a] = odp.rod[a] +odp.odplRo[n];
+                        console.log(a, odp.licznik[a], odp.rod[a]);
+    } }
     function displayDataFromStep2() {
         document.getElementById('costDps').innerHTML = odp.costDps;
         document.getElementById('costMieszkaniec').innerHTML = odp.mieszkaDps;
