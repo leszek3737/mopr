@@ -14,6 +14,7 @@
     }
 
     function fillStep2() {
+        
         buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3", downloadDataToStep2);
     }
 
@@ -46,7 +47,7 @@
         tr.classList.add("czlonekRodziny");
         tr.id = ("czlonekRodziny" + odp.licz);
         tr.innerHTML = "<td><select></select></td>";
-        tr.innerHTML += "<td><input class='osGosDom' type='number'></td>";
+        tr.innerHTML += "<td><input class='osGosDom' type='number' 'step=0.01'></td>";
         tr.innerHTML += "<td><input class='dochGosDom' type='number'></td>";
         tr.innerHTML += "<td><button class='removeFamilyMemberBtn' >usuń</button></td>";
         var select = tr.querySelector("select");
@@ -59,7 +60,7 @@
         wynikTr.innerHTML += "<td class='wynikOsGosDom'>-</td>";
         wynikTr.innerHTML += "<td class='wynikDochGosDom'>-</td>";
         wynikTr.innerHTML += "<td>-</td>";
-//        usuwanie
+        //        usuwanie
         var table = document.querySelector("#krok4 table");
         var wynikTabele = document.querySelector(".wynik table");
 
@@ -153,22 +154,45 @@
         var aw = 0;
         for (var i = odp.licz - 1; i >= 0; i-- & aw++) {
             odp.rodzi[aw] = document.querySelector("#czlonekRodziny" + aw + " select").value;
-            odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .osGosDom").value;
-            odp.iloscRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
+            odp.iloscRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .osGosDom").value;
+            odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
             displayDataFromStep4(aw);
+            calculationPayment(aw);
+            
         }
 
     }
+
+    function calculationPayment(n) {
+        var i = odp.iloscRo[n];
+        var od = odp.odplRo[n];
+        if (i == 1) {
+            od = od - window.__kryteriumDoch__.samotnie;
+            if (od <= 0) {
+                od = 0
+            }
+        } else {
+            od = (od / i - window.__kryteriumDoch__.rodzina) * i;
+            if (od <= 0) {
+                od = 0
+            }
+        }
+        od = Math.round(od * 100) / 100;
+        odp.odplRo[n] = od;
+    }
+    
+
 
     function displayDataFromStep2() {
         document.getElementById('costDps').innerHTML = odp.costDps;
         document.getElementById('costMieszkaniec').innerHTML = odp.mieszkaDps;
         document.getElementById('costGmina').innerHTML = odp.gminy;
     }
-    function displayDataFromStep4(n){ 
-            document.querySelector("#WynikCzłonekRodziny" + n + " .wynikRodzaj").innerHTML = odp.rodzi[n];
-            document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOsGosDom").innerHTML = odp.odplRo[n];
-            document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = odp.iloscRo[n];
+
+    function displayDataFromStep4(n) {
+        document.querySelector("#WynikCzłonekRodziny" + n + " .wynikRodzaj").innerHTML = odp.rodzi[n];
+        document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOsGosDom").innerHTML = odp.iloscRo[n];
+        document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = odp.odplRo[n];
     }
 
 })();
