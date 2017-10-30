@@ -1,26 +1,28 @@
 (function () {
     'use strict';
-    
+
     document.addEventListener("DOMContentLoaded", function () {
         fillSelectDefaulOptions(document.querySelector("#dps select"), window.__DPS__);
         fillStep1();
         fillStep2();
         fillStep4();
-        (function() { var ii = window.__iloscstopiniePok__;
-        for (var n = 0; n <= ii; n++){
-            odp.rod[n] = 0;
-            odp.licznik[n] = 0;
-        }}())
+        (function () {
+            var ii = window.__iloscstopiniePok__;
+            for (var n = 0; n <= ii; n++) {
+                odp.rod[n] = 0;
+                odp.licznik[n] = 0;
+            }
+        }())
     });
-    
-    
+
+
     function fillStep1() {
         buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", )
-      
+
     }
 
     function fillStep2() {
-        
+
         buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3", downloadDataToStep2);
     }
 
@@ -65,7 +67,7 @@
         wynikTr.innerHTML = "<td class='wynikRodzaj'>-</td>";
         wynikTr.innerHTML += "<td class='wynikOsGosDom'>-</td>";
         wynikTr.innerHTML += "<td class='wynikDochGosDom'>-</td>";
-        wynikTr.innerHTML += "<td>-</td>";
+        wynikTr.innerHTML += "<td class='wynikOdplatnosc'>-</td>";
         //        usuwanie
         var table = document.querySelector("#krok4 table");
         var wynikTabele = document.querySelector(".wynik table");
@@ -153,7 +155,6 @@
         }
         odp.gminy = odp.costDps - odp.mieszkaDps;
         fillStep3();
-        console.log(odp.mieszkaDps, odp.gminy);
     }
 
     function downloadDataToStep4() {
@@ -164,9 +165,10 @@
             odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
             displayDataFromStep4(aw);
             calculationPayment(aw);
-            
+
         }
-                nieMamPomysluNaNazwęXD();
+        worriesPayment();
+        degreeKinshipPay()
     }
 
     function calculationPayment(n) {
@@ -186,15 +188,39 @@
         od = Math.round(od * 100) / 100;
         odp.odplRo[n] = od;
     }
-    
-    function nieMamPomysluNaNazwęXD(){
+
+    function worriesPayment() {
         var i = odp.licz - 1;
         for (var n = 0; n <= i; n++) {
             var a = odp.rodzi[n];
             odp.licznik[a] = odp.licznik[a] + 1;
-            odp.rod[a] = odp.rod[a] +odp.odplRo[n];
-                        console.log(a, odp.licznik[a], odp.rod[a]);
-    } }
+            odp.rod[a] = odp.rod[a] + odp.odplRo[n];
+        }
+
+    }
+
+    function degreeKinshipPay() {
+        var o = odp.gminy;
+        var n = 0;
+        var suma = 0;
+        for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
+            suma = suma + odp.rod[m];
+        }
+        console.log(suma, "dupa");
+        if (suma != 0) {
+            while (o > 0 && n <= window.__iloscstopiniePok__) {
+                o = o - odp.rod[n];
+                n = n + 1;
+            } } else {
+            for (var e = odp.licz; n <= e; n++) {
+                document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOdplatnosc").innerHTML = "0";
+                displayDataFromStep2();
+            }
+
+        }
+
+    }
+
     function displayDataFromStep2() {
         document.getElementById('costDps').innerHTML = odp.costDps;
         document.getElementById('costMieszkaniec').innerHTML = odp.mieszkaDps;
