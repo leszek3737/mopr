@@ -205,6 +205,8 @@
         var suma = 0;
         for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
             suma = suma + odp.rod[m];
+            console.log(odp.rod[m]);
+
         }
         if (suma != 0) {
             var pelne = null;
@@ -216,7 +218,6 @@
                 } else {
                     niePelne = m;
                 }
-                console.log(pelne, niePelne)
 
             }
             if (pelne != null) {
@@ -238,23 +239,45 @@
     }
 
     function wyslanieDoPelnych(m) {
-        console.log("pełna", m, odp.gminy)
         for (var i = 0; m >= i; i++) { // do każdego do jakiegoś poziomu 
-            console.log ("dupa1");
             for (var j = 0; odp.licz > j; j++) {
-                console.log ("dupa2", i , j , odp.rodzi[j]);
                 if (odp.rodzi[j] == i) {
-                    
                     odp.gminy = odp.gminy - odp.odplRo[j];
-                    console.log(j, i, odp.odplRo[j], odp.gminy)
                 }
             }
         }
     }
 
     function wyslanieDoNiePelnych(m) {
-        
+        m = m - 1;
+        var o = odp.gminy / odp.licznik[m];
+        var check;
+        console.log(m, o, odp.rod[m], odp.licznik[m]);
+        for (var j = 0; odp.licz > j; j++) { //która liczba
+            if (odp.rodzi[j] == m) {
+                if (odp.odplRo >= o) {
+                    check = 1;
+                    console.log(check);
+                } else {
+                    check = 0
+                    console.log(check);
+                }
+            }
+        }
+        if (check = 1) {
+            for (var j = 0; odp.licz > j; j++) { //która liczba
+                if (odp.rodzi[j] == m) {
+                    console.log(odp.odplRo[j], o, odp.gminy);
+                    odp.odplRo[j] = o;
+                    odp.gminy = odp.gminy - odp.odplRo[j];
+
+                }
+            }
+        } else {
+
+        }
     }
+
 
     function displayDataFromStep2() {
         document.getElementById('costDps').innerHTML = odp.costDps;
@@ -268,12 +291,12 @@
         document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = odp.odplRo[n];
     }
 
-    function displayDataCalculation(){
-        var aw =0;
+    function displayDataCalculation() {
+        var aw = 0;
         for (var i = odp.licz - 1; i >= 0; i-- && aw++) {
             document.querySelector("#WynikCzłonekRodziny" + aw + " .wynikOdplatnosc").innerHTML = odp.odplRo[aw];
-            }
-    
+        }
+
     }
-    
+
 })();
