@@ -255,7 +255,7 @@
         console.log(m, o, odp.rod[m], odp.licznik[m]);
         for (var j = 0; odp.licz > j; j++) { //która liczba
             if (odp.rodzi[j] == m) {
-                if (odp.odplRo >= o) {
+                if (odp.odplRo[j] >= o) {
                     check = 1;
                     console.log(check);
                 } else {
@@ -273,9 +273,22 @@
 
                 }
             }
+        
         } else {
-
-        }
+            var check2j[];
+            var check2w[];
+            var check2p[];
+            var i=0;
+             for (var j = 0; odp.licz > j; j++) { //która liczba
+                if (odp.rodzi[j] == m) {
+                    check2j[i] = m;
+                    check2w[i] = odp.odplRo[j];
+                    if()
+                    check2p[i] = 1 ; // koniec
+                }                
+                }
+            }
+        
     }
 
 
