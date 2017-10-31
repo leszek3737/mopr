@@ -55,8 +55,8 @@
         tr.classList.add("czlonekRodziny");
         tr.id = ("czlonekRodziny" + odp.licz);
         tr.innerHTML = "<td><select></select></td>";
-        tr.innerHTML += "<td><input class='osGosDom' type='number' 'step=0.01'></td>";
-        tr.innerHTML += "<td><input class='dochGosDom' type='number'></td>";
+        tr.innerHTML += "<td><input class='osGosDom' type='number' step='1' value='1'></td>";
+        tr.innerHTML += "<td><input class='dochGosDom' type='number' step='0,01' value='2000'></td>";
         tr.innerHTML += "<td><button class='removeFamilyMemberBtn' >usuń</button></td>";
         var select = tr.querySelector("select");
         fillSelectDefaulOptions(select, window.__stopiniePok__);
@@ -201,24 +201,59 @@
 
     function degreeKinshipPay() {
         var o = odp.gminy;
-        var n = 0;
+        var n = 0; //poziom pokrewieństwa +1 na którym się zakańcza 
         var suma = 0;
         for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
             suma = suma + odp.rod[m];
         }
-        console.log(suma, "dupa");
         if (suma != 0) {
-            while (o > 0 && n <= window.__iloscstopiniePok__) {
-                o = o - odp.rod[n];
-                n = n + 1;
-            } } else {
+            var pelne = null;
+            var niePelne = null;
+            for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
+                o = o - odp.rod[m];
+                if (o >= 0) {
+                    pelne = m;
+                } else {
+                    niePelne = m;
+                }
+                console.log(pelne, niePelne)
+
+            }
+            if (pelne != null) {
+                wyslanieDoPelnych(pelne);
+            }
+            if (niePelne != null) {
+                wyslanieDoNiePelnych(niePelne);
+            }
+            displayDataCalculation();
+            displayDataFromStep2()
+        } else {
             for (var e = odp.licz; n <= e; n++) {
-                document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOdplatnosc").innerHTML = "0";
+                document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOdplatnosc").innerHTML = 0;
                 displayDataFromStep2();
             }
 
-        }
+        } // koniec rodzina nic nie płaci
 
+    }
+
+    function wyslanieDoPelnych(m) {
+        console.log("pełna", m, odp.gminy)
+        for (var i = 0; m >= i; i++) { // do każdego do jakiegoś poziomu 
+            console.log ("dupa1");
+            for (var j = 0; odp.licz > j; j++) {
+                console.log ("dupa2", i , j , odp.rodzi[j]);
+                if (odp.rodzi[j] == i) {
+                    
+                    odp.gminy = odp.gminy - odp.odplRo[j];
+                    console.log(j, i, odp.odplRo[j], odp.gminy)
+                }
+            }
+        }
+    }
+
+    function wyslanieDoNiePelnych(m) {
+        
     }
 
     function displayDataFromStep2() {
@@ -233,4 +268,12 @@
         document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = odp.odplRo[n];
     }
 
+    function displayDataCalculation(){
+        var aw =0;
+        for (var i = odp.licz - 1; i >= 0; i-- && aw++) {
+            document.querySelector("#WynikCzłonekRodziny" + aw + " .wynikOdplatnosc").innerHTML = odp.odplRo[aw];
+            }
+    
+    }
+    
 })();
