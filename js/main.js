@@ -211,23 +211,41 @@
         if (suma != 0) {
             var pelne = null;
             var niePelne = null;
-            var czyPelne = [];
-            for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
+            var m;
+            for (m = 0; m <= window.__iloscstopiniePok__; m++) {
                 o = o - odp.rod[m];
-                if (o >= 0) {
+                if (o > 0) {
                     pelne = m;
-                } else {
+                }
+                if (o < 0) {
                     niePelne = m;
+                    m = window.__iloscstopiniePok__;
                 }
 
             }
-            console.log["dupa1"];
+
             if (pelne != null) {
                 wyslanieDoPelnych(pelne);
             }
             if (niePelne != null) {
                 wyslanieDoNiePelnych(niePelne);
             }
+            console.log(m, window.__iloscstopiniePok__, niePelne);
+
+
+
+            for (var j = niePelne; j < window.__iloscstopiniePok__;) {
+                j = j + 1;
+                for (var i = 0; odp.licz > i; i++) {
+                    console.log(j);
+                    if (odp.rodzi[i] == j) {
+                        console.log("dupa");
+                        odp.odplRo[i] = 0;
+                    }
+                }
+            }
+
+
             displayDataCalculation();
             displayDataFromStep2()
         } else {
@@ -257,7 +275,8 @@
                 j = j + 1;
             }
         }
-        console.log(j);
+
+
         for (var i = 0; odp.licz > i; i++) {
             var average = odp.gminy / j;
             if (odp.rodzi[i] == m) {
