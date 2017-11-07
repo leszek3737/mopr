@@ -207,7 +207,7 @@
             suma = suma + odp.rod[m];
 
         }
-       
+
         if (suma != 0) {
             var pelne = null;
             var niePelne = null;
@@ -219,7 +219,7 @@
                 } else {
                     niePelne = m;
                 }
-                
+
             }
             console.log["dupa1"];
             if (pelne != null) {
@@ -252,30 +252,30 @@
 
     function wyslanieDoNiePelnych(m) {
         var j = 0;
-        for  (var i = 0; odp.licz > i; i++) {
+        for (var i = 0; odp.licz > i; i++) {
             if (odp.rodzi[i] == m) {
-                j = j + 1;  
+                j = j + 1;
             }
         }
         console.log(j);
         for (var i = 0; odp.licz > i; i++) {
             var average = odp.gminy / j;
             if (odp.rodzi[i] == m) {
-                if(odp.odplRo[i] < average){ //jeśli odpłatnośc rodziny jest mniejsza niż średnia 
+                if (odp.odplRo[i] < average) { //jeśli odpłatnośc rodziny jest mniejsza niż średnia 
                     odp.gminy = odp.gminy - odp.odplRo[i]; // odejmij odejmij od rodzaju rodziny
                     odp.rodzi[i] = null;
                     j = j - 1;
-                } 
+                }
             }
         }
         var average2 = odp.gminy / j;
         for (var i = 0; odp.licz > i; i++) {
-             if (odp.rodzi[i] == m) {
-                 odp.odplRo[i] = average2;
-                 odp.gminy = odp.gminy - odp.odplRo[i];
-             }
+            if (odp.rodzi[i] == m) {
+                odp.odplRo[i] = average2;
+                odp.gminy = odp.gminy - odp.odplRo[i];
+            }
         }
-        
+
 
     }
 
@@ -299,8 +299,9 @@
         }
 
     }
-    function nul(){
-        
+
+    function nul() {
+
     }
 
 })();
