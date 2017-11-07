@@ -17,7 +17,7 @@
 
 
     function fillStep1() {
-        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", )
+        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", nul)
 
     }
 
@@ -117,7 +117,7 @@
         function changeEventHandler(event) { 
             valueRadio = event.target.value;
             if (valueRadio == 1) {
-                buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", )
+                buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", nul)
             } else {
                 buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
                 invisibility("#tableWynik");
@@ -298,6 +298,9 @@
             document.querySelector("#WynikCzłonekRodziny" + aw + " .wynikOdplatnosc").innerHTML = odp.odplRo[aw];
         }
 
+    }
+    function nul(){
+        
     }
 
 })();
