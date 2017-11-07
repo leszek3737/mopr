@@ -205,12 +205,13 @@
         var suma = 0;
         for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
             suma = suma + odp.rod[m];
-            console.log(odp.rod[m]);
 
         }
+       
         if (suma != 0) {
             var pelne = null;
             var niePelne = null;
+            var czyPelne = [];
             for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
                 o = o - odp.rod[m];
                 if (o >= 0) {
@@ -218,12 +219,14 @@
                 } else {
                     niePelne = m;
                 }
-
+                
             }
+            console.log["dupa1"];
             if (pelne != null) {
                 wyslanieDoPelnych(pelne);
             }
             if (niePelne != null) {
+                
                 wyslanieDoNiePelnych(niePelne);
             }
             displayDataCalculation();
@@ -249,46 +252,12 @@
     }
 
     function wyslanieDoNiePelnych(m) {
-        m = m - 1;
-        var o = odp.gminy / odp.licznik[m];
-        var check;
-        console.log(m, o, odp.rod[m], odp.licznik[m]);
-        for (var j = 0; odp.licz > j; j++) { //która liczba
-            if (odp.rodzi[j] == m) {
-                if (odp.odplRo[j] >= o) {
-                    check = 1;
-                    console.log(check);
-                } else {
-                    check = 0
-                    console.log(check);
-                }
+        for (var i = 0; odp.licz > i; i++) {
+            if (odp.rodzi[i] == m) {
+                
             }
         }
-        if (check = 1) {
-            for (var j = 0; odp.licz > j; j++) { //która liczba
-                if (odp.rodzi[j] == m) {
-                    console.log(odp.odplRo[j], o, odp.gminy);
-                    odp.odplRo[j] = o;
-                    odp.gminy = odp.gminy - odp.odplRo[j];
 
-                }
-            }
-        
-        } else {
-            var check2j[];
-            var check2w[];
-            var check2p[];
-            var i=0;
-             for (var j = 0; odp.licz > j; j++) { //która liczba
-                if (odp.rodzi[j] == m) {
-                    check2j[i] = m;
-                    check2w[i] = odp.odplRo[j];
-                    if()
-                    check2p[i] = 1 ; // koniec
-                }                
-                }
-            }
-        
     }
 
 
