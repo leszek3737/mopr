@@ -229,21 +229,19 @@
             }
             if (niePelne != null) {
                 wyslanieDoNiePelnych(niePelne);
-            }
-            console.log(m, window.__iloscstopiniePok__, niePelne);
-
-
-
-            for (var j = niePelne; j < window.__iloscstopiniePok__;) {
-                j = j + 1;
-                for (var i = 0; odp.licz > i; i++) {
-                    console.log(j);
-                    if (odp.rodzi[i] == j) {
-                        console.log("dupa");
-                        odp.odplRo[i] = 0;
+                for (var j = niePelne; j < window.__iloscstopiniePok__;) {
+                    j = j + 1;
+                    for (var i = 0; odp.licz > i; i++) {
+                        if (odp.rodzi[i] == j) {
+                            odp.odplRo[i] = 0;
+                        }
                     }
                 }
             }
+
+
+
+
 
 
             displayDataCalculation();
