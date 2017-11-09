@@ -186,12 +186,13 @@
             odp.rodzi[aw] = document.querySelector("#czlonekRodziny" + aw + " select").value;
             odp.iloscRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .osGosDom").value;
             odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
-            displayDataFromStep4(aw);
             calculationPayment(aw);
+            displayDataFromStep4(aw);
 
         }
         worriesPayment();
         degreeKinshipPay()
+        exchangeName()
     }
 
     function calculationPayment(n) {
@@ -330,6 +331,19 @@
         document.querySelector("#WynikCzłonekRodziny" + n + " .wynikRodzaj").innerHTML = odp.rodzi[n];
         document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOsGosDom").innerHTML = odp.iloscRo[n];
         document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = odp.odplRo[n];
+
+    }
+
+    function exchangeName() {
+        for (var i = 0; i < odp.licz; i++) {
+            for (var j = 0; j <= window.__iloscstopiniePok__; j++) {
+                if (odp.rodzi[i] == j) {
+                    odp.rodzi[i] = window.__stopiniePok__[j].name;
+                    console.log(odp.rodzi[i])
+                    document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = odp.rodzi[i];
+                }
+            }
+        }
     }
 
     function displayDataCalculation() {
