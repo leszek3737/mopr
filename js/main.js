@@ -68,7 +68,7 @@
         wynikTr.innerHTML += "<td class='wynikOsGosDom'>-</td>";
         wynikTr.innerHTML += "<td class='wynikDochGosDom'>-</td>";
         wynikTr.innerHTML += "<td class='wynikOdplatnosc'>-</td>";
-        //        usuwanie
+        // usuwanie
         var table = document.querySelector("#krok4 table");
         var wynikTabele = document.querySelector(".wynik table");
 
@@ -76,6 +76,7 @@
         removeFamilyMemberBtn.addEventListener("click", function () {
             table.removeChild(tr);
             wynikTabele.removeChild(wynikTr);
+            buttonRemove()
         }, false)
 
         //dodawanie do  html
@@ -83,7 +84,29 @@
         document.querySelector(".wynik table").appendChild(wynikTr);
         odp.licz = odp.licz + 1;
 
+        function buttonRemove() {
+            var removeElement = null;
+            var m = odp.licz - 1;
+            for (var i = 0; i < m; i++) {
+                var wiersz = document.querySelector("#czlonekRodziny" + i);
+
+                if (wiersz == null) {
+                    removeElement = i;
+                }
+            }
+            if (removeElement != null) {
+                for (var i = removeElement; i < m; i++) {
+                    var j = i + 1;
+                    document.getElementById('czlonekRodziny' + j).id = "czlonekRodziny" + i;
+                    document.getElementById('WynikCzłonekRodziny' + j).id = "WynikCzłonekRodziny" + i;
+                }
+            }
+            odp.licz = odp.licz - 1;
+        }
+
     }
+
+
 
     function fillSelectDefaulOptions(container, list) {
         list.forEach(function (obj) {
@@ -172,9 +195,9 @@
     }
 
     function calculationPayment(n) {
-        var i = odp.iloscRo[n];
+        var ileR = odp.iloscRo[n];
         var od = odp.odplRo[n];
-        if (i == 1) {
+        if (ileR == 1) {
             od = od - window.__kryteriumDoch__.samotnie;
             if (od <= 0) {
                 od = 0
@@ -190,8 +213,8 @@
     }
 
     function worriesPayment() {
-        var i = odp.licz - 1;
-        for (var n = 0; n <= i; n++) {
+        var lic = odp.licz - 1;
+        for (var n = 0; n <= lic; n++) {
             var a = odp.rodzi[n];
             odp.licznik[a] = odp.licznik[a] + 1;
             odp.rod[a] = odp.rod[a] + odp.odplRo[n];
@@ -209,27 +232,27 @@
         }
 
         if (suma != 0) {
-            var pelne = null;
-            var niePelne = null;
+            var full = null;
+            var partial = null;
             var m;
             for (m = 0; m <= window.__iloscstopiniePok__; m++) {
                 o = o - odp.rod[m];
                 if (o > 0) {
-                    pelne = m;
+                    full = m;
                 }
                 if (o < 0) {
-                    niePelne = m;
+                    partial = m;
                     m = window.__iloscstopiniePok__;
                 }
 
             }
 
-            if (pelne != null) {
-                wyslanieDoPelnych(pelne);
+            if (full != null) {
+                sendFullPayment(full);
             }
-            if (niePelne != null) {
-                wyslanieDoNiePelnych(niePelne);
-                for (var j = niePelne; j < window.__iloscstopiniePok__;) {
+            if (partial != null) {
+                sendPatilPayment(partial);
+                for (var j = partial; j < window.__iloscstopiniePok__;) {
                     j = j + 1;
                     for (var i = 0; odp.licz > i; i++) {
                         if (odp.rodzi[i] == j) {
@@ -256,7 +279,7 @@
 
     }
 
-    function wyslanieDoPelnych(m) {
+    function sendFullPayment(m) {
         for (var i = 0; m >= i; i++) { // do każdego do jakiegoś poziomu 
             for (var j = 0; odp.licz > j; j++) {
                 if (odp.rodzi[j] == i) {
@@ -266,7 +289,7 @@
         }
     }
 
-    function wyslanieDoNiePelnych(m) {
+    function sendPatilPayment(m) {
         var j = 0;
         for (var i = 0; odp.licz > i; i++) {
             if (odp.rodzi[i] == m) {
