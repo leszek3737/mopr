@@ -58,7 +58,7 @@
 
             function changeEventHandler(event) {
                 valueRadio = event.target.value;
-                if (valueRadio === "1") {
+                if (valueRadio === 1) {
                     buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", nul);
                 } else {
                     buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
@@ -113,6 +113,7 @@
                 var m = odp.licz - 1;
                 for (var i = 0; i < m; i++) {
                     var wiersz = document.querySelector("#czlonekRodziny" + i);
+
                     if (wiersz === null) {
                         removeElement = i;
                     }
@@ -154,10 +155,9 @@
             function exchangeName() {
                 for (var i = 0; i < odp.licz; i++) {
                     for (var j = 0; j <= window.__iloscstopiniePok__; j++) {
-                        j= j + "";
-                        if (odp.rodzi[i] === j ) {
+                        if (odp.rodzi[i] === j) {
                             odp.rodzi[i] = window.__stopiniePok__[j].name;
-                        document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = odp.rodzi[i];
+                            document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = odp.rodzi[i];
                         }
                     }
                 }
@@ -166,7 +166,8 @@
             function calculationPayment(n) {
                 var ileR = odp.iloscRo[n];
                 var od = odp.odplRo[n];
-                if (ileR === "1") {
+
+                if (ileR === 1) {
                     od = od - window.__kryteriumDoch__.samotnie;
                     if (od <= 0) {
                         od = 0;
@@ -205,7 +206,6 @@
                     var partial = null;
                    var ma;
                     for (ma = 0; ma <= window.__iloscstopiniePok__; ma++) {
-                        ma = ma + "";
                         o = o - odp.rod[ma];
                         if (o > 0) {
                             full = ma;
@@ -257,7 +257,6 @@
 
                 function sendFullPayment(mm) {
                     for (var i = 0; mm >= i; i++) { // do każdego do jakiegoś poziomu 
-                        i = i + "";
                         for (var j = 0; odp.licz > j; j++) {
                             if (odp.rodzi[j] === i) {
                                 odp.gminy = odp.gminy - odp.odplRo[j];
