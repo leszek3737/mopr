@@ -154,10 +154,9 @@
             function exchangeName() {
                 for (var i = 0; i < odp.licz; i++) {
                     for (var j = 0; j <= window.__iloscstopiniePok__; j++) {
-                        j= j + "";
-                        if (odp.rodzi[i] === j ) {
+                        if (parseInt(odp.rodzi[i]) === j) {
                             odp.rodzi[i] = window.__stopiniePok__[j].name;
-                        document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = odp.rodzi[i];
+                            document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = odp.rodzi[i];
                         }
                     }
                 }
@@ -200,12 +199,11 @@
 
                 }
 
-                if (suma !== 0) {
+                if (suma > 0) {
                     var full = null;
                     var partial = null;
-                   var ma;
+                    var ma;
                     for (ma = 0; ma <= window.__iloscstopiniePok__; ma++) {
-                        ma = ma + "";
                         o = o - odp.rod[ma];
                         if (o > 0) {
                             full = ma;
@@ -225,17 +223,12 @@
                         for (var j = partial; j < window.__iloscstopiniePok__;) {
                             j = j + 1;
                             for (var i = 0; odp.licz > i; i++) {
-                                if (odp.rodzi[i] === j) {
+                                if (parseInt(odp.rodzi[i]) === j) {
                                     odp.odplRo[i] = 0;
                                 }
                             }
                         }
                     }
-
-
-
-
-
 
                     displayDataCalculation();
                     displayDataFromStep2();
@@ -247,6 +240,7 @@
                     }
 
                 } // koniec rodzina nic nie płaci
+
                 function displayDataCalculation() {
                     var aw = 0;
                     for (var i = odp.licz - 1; i >= 0; i-- && aw++) {
@@ -257,9 +251,9 @@
 
                 function sendFullPayment(mm) {
                     for (var i = 0; mm >= i; i++) { // do każdego do jakiegoś poziomu 
-                        i = i + "";
+
                         for (var j = 0; odp.licz > j; j++) {
-                            if (odp.rodzi[j] === i) {
+                            if (parseInt(odp.rodzi[j]) === i) {
                                 odp.gminy = odp.gminy - odp.odplRo[j];
                             }
                         }
@@ -269,7 +263,7 @@
                 function sendPatilPayment(m) {
                     var j = 0;
                     for (var i = 0; odp.licz > i; i++) {
-                        if (odp.rodzi[i] === m) {
+                        if (parseInt(odp.rodzi[i]) === m) {
                             j = j + 1;
                         }
                     }
@@ -277,7 +271,7 @@
 
                     for (i = 0; odp.licz > i; i++) {
                         var average = odp.gminy / j;
-                        if (odp.rodzi[i] === m) {
+                        if (parseInt(odp.rodzi[i]) === m) {
                             if (odp.odplRo[i] < average) { //jeśli odpłatnośc rodziny jest mniejsza niż średnia 
                                 odp.gminy = odp.gminy - odp.odplRo[i]; // odejmij odejmij od rodzaju rodziny
                                 odp.rodzi[i] = null;
@@ -287,7 +281,7 @@
                     }
                     var average2 = odp.gminy / j;
                     for (i = 0; odp.licz > i; i++) {
-                        if (odp.rodzi[i] === m) {
+                        if (parseInt(odp.rodzi[i]) === m) {
                             odp.odplRo[i] = average2;
                             odp.gminy = odp.gminy - odp.odplRo[i];
                         }
