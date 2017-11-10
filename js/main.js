@@ -12,11 +12,11 @@
                 odp.rod[n] = 0;
                 odp.licznik[n] = 0;
             }
-        }())
+        }());
     });
 
     function fillStep1() {
-        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", nul)
+        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", nul);
     }
 
     function fillStep2() {
@@ -37,10 +37,10 @@
     }
 
     function fillStep3() {
-        if (odp.gminy == 0) {
+        if (odp.gminy === 0) {
             buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
             invisibility("#tableWynik");
-            var rodzTym = document.querySelector("#hasFamily")
+            var rodzTym = document.querySelector("#hasFamily");
             rodzTym.innerHTML = "<h3>Mieszkaniec osiągną maxymalną odpłatność naciśnij dalej żeby zobaczyć wynik<h3>";
 
             document.querySelector("#krok3").appendChild(rodzTym);
@@ -49,17 +49,17 @@
             radioInput("#hasFamily label input");
         }
 
-        function radioInput(radioClass) {  
-            var radio = document.querySelectorAll(radioClass);     
-            radio.forEach(function (element) {    
-                element.onchange = changeEventHandler;  
-            });    
+        function radioInput(radioClass) {
+            var radio = document.querySelectorAll(radioClass);
+            radio.forEach(function (element) {
+                element.onchange = changeEventHandler;
+            });
 
 
-            function changeEventHandler(event) { 
+            function changeEventHandler(event) {
                 valueRadio = event.target.value;
-                if (valueRadio == 1) {
-                    buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", nul)
+                if (valueRadio === 1) {
+                    buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", nul);
                 } else {
                     buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
                     invisibility("#tableWynik");
@@ -69,7 +69,7 @@
     }
 
     function fillStep4() {
-        var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn")
+        var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn");
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
         buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik", downloadDataToStep4);
 
@@ -100,8 +100,8 @@
             removeFamilyMemberBtn.addEventListener("click", function () {
                 table.removeChild(tr);
                 wynikTabele.removeChild(wynikTr);
-                buttonRemove()
-            }, false)
+                buttonRemove();
+            }, false);
 
             //dodawanie do  html
             document.querySelector("#krok4 table").appendChild(tr);
@@ -114,12 +114,12 @@
                 for (var i = 0; i < m; i++) {
                     var wiersz = document.querySelector("#czlonekRodziny" + i);
 
-                    if (wiersz == null) {
+                    if (wiersz === null) {
                         removeElement = i;
                     }
                 }
-                if (removeElement != null) {
-                    for (var i = removeElement; i < m; i++) {
+                if (removeElement !== null) {
+                    for (i = removeElement; i < m; i++) {
                         var j = i + 1;
                         document.getElementById('czlonekRodziny' + j).id = "czlonekRodziny" + i;
                         document.getElementById('WynikCzłonekRodziny' + j).id = "WynikCzłonekRodziny" + i;
@@ -132,7 +132,7 @@
 
         function downloadDataToStep4() {
             var aw = 0;
-            for (var i = odp.licz - 1; i >= 0; i-- & aw++) {
+            for (var i = odp.licz - 1; i >= 0; i-- && aw++) {
                 odp.rodzi[aw] = document.querySelector("#czlonekRodziny" + aw + " select").value;
                 odp.iloscRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .osGosDom").value;
                 odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
@@ -142,8 +142,8 @@
 
             }
             worriesPayment();
-            degreeKinshipPay()
-            exchangeName()
+            degreeKinshipPay();
+            exchangeName();
 
             function displayDataFromStep4(n) {
                 document.querySelector("#WynikCzłonekRodziny" + n + " .wynikRodzaj").innerHTML = odp.rodzi[n];
@@ -155,7 +155,7 @@
             function exchangeName() {
                 for (var i = 0; i < odp.licz; i++) {
                     for (var j = 0; j <= window.__iloscstopiniePok__; j++) {
-                        if (odp.rodzi[i] == j) {
+                        if (odp.rodzi[i] === j) {
                             odp.rodzi[i] = window.__stopiniePok__[j].name;
                             document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = odp.rodzi[i];
                         }
@@ -167,15 +167,15 @@
                 var ileR = odp.iloscRo[n];
                 var od = odp.odplRo[n];
 
-                if (ileR == 1) {
+                if (ileR === 1) {
                     od = od - window.__kryteriumDoch__.samotnie;
                     if (od <= 0) {
-                        od = 0
+                        od = 0;
                     }
                 } else {
                     od = (od / ileR - window.__kryteriumDoch__.rodzina) * i;
                     if (od <= 0) {
-                        od = 0
+                        od = 0;
                     }
                 }
                 od = Math.round(od * 100) / 100;
@@ -196,36 +196,36 @@
                 var o = odp.gminy;
                 var n = 0; //poziom pokrewieństwa +1 na którym się zakańcza 
                 var suma = 0;
-                for (var m = 0; m <= window.__iloscstopiniePok__; m++) {
-                    suma = suma + odp.rod[m];
+                for (var mw = 0; mw <= window.__iloscstopiniePok__; mw++) {
+                    suma = suma + odp.rod[mw];
 
                 }
 
-                if (suma != 0) {
+                if (suma !== 0) {
                     var full = null;
                     var partial = null;
-                    var m;
-                    for (m = 0; m <= window.__iloscstopiniePok__; m++) {
-                        o = o - odp.rod[m];
+                   var ma;
+                    for (ma = 0; ma <= window.__iloscstopiniePok__; ma++) {
+                        o = o - odp.rod[ma];
                         if (o > 0) {
-                            full = m;
+                            full = ma;
                         }
                         if (o < 0) {
-                            partial = m;
-                            m = window.__iloscstopiniePok__;
+                            partial = ma;
+                            ma = window.__iloscstopiniePok__;
                         }
 
                     }
 
-                    if (full != null) {
+                    if (full !== null) {
                         sendFullPayment(full);
                     }
-                    if (partial != null) {
+                    if (partial !== null) {
                         sendPatilPayment(partial);
                         for (var j = partial; j < window.__iloscstopiniePok__;) {
                             j = j + 1;
                             for (var i = 0; odp.licz > i; i++) {
-                                if (odp.rodzi[i] == j) {
+                                if (odp.rodzi[i] === j) {
                                     odp.odplRo[i] = 0;
                                 }
                             }
@@ -238,7 +238,7 @@
 
 
                     displayDataCalculation();
-                    displayDataFromStep2()
+                    displayDataFromStep2();
                 } else {
                     for (var e = odp.licz; n < e; n++) {
                         document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOdplatnosc").innerHTML = "0";
@@ -255,10 +255,10 @@
 
                 }
 
-                function sendFullPayment(m) {
-                    for (var i = 0; m >= i; i++) { // do każdego do jakiegoś poziomu 
+                function sendFullPayment(mm) {
+                    for (var i = 0; mm >= i; i++) { // do każdego do jakiegoś poziomu 
                         for (var j = 0; odp.licz > j; j++) {
-                            if (odp.rodzi[j] == i) {
+                            if (odp.rodzi[j] === i) {
                                 odp.gminy = odp.gminy - odp.odplRo[j];
                             }
                         }
@@ -268,15 +268,15 @@
                 function sendPatilPayment(m) {
                     var j = 0;
                     for (var i = 0; odp.licz > i; i++) {
-                        if (odp.rodzi[i] == m) {
+                        if (odp.rodzi[i] === m) {
                             j = j + 1;
                         }
                     }
 
 
-                    for (var i = 0; odp.licz > i; i++) {
+                    for (i = 0; odp.licz > i; i++) {
                         var average = odp.gminy / j;
-                        if (odp.rodzi[i] == m) {
+                        if (odp.rodzi[i] === m) {
                             if (odp.odplRo[i] < average) { //jeśli odpłatnośc rodziny jest mniejsza niż średnia 
                                 odp.gminy = odp.gminy - odp.odplRo[i]; // odejmij odejmij od rodzaju rodziny
                                 odp.rodzi[i] = null;
@@ -285,8 +285,8 @@
                         }
                     }
                     var average2 = odp.gminy / j;
-                    for (var i = 0; odp.licz > i; i++) {
-                        if (odp.rodzi[i] == m) {
+                    for (i = 0; odp.licz > i; i++) {
+                        if (odp.rodzi[i] === m) {
                             odp.odplRo[i] = average2;
                             odp.gminy = odp.gminy - odp.odplRo[i];
                         }
@@ -319,12 +319,11 @@
             invisibility(begin);
             document.querySelector(target).classList.toggle("view");
             functionIn();
-        }, false)
+        }, false);
 
     }
 
     var valueRadio = 0;
-
 
     function invisibility(target) {
         var targetStep = document.querySelector(target);
@@ -341,7 +340,7 @@
         iloscRo: [], // ilość osób w danej rodzinie
         rod: [], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
         licznik: [], // ilość rodzin w poszczegulnych grupach 
-    }
+    };
 
     function displayDataFromStep2() {
         document.getElementById('costDps').innerHTML = odp.costDps;
