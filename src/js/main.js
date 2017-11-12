@@ -16,7 +16,7 @@
     });
 
     function fillStep1() {
-        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", nul);
+        buttonNextStep("#krok1 .nextStep", "#krok1", "#krok2", null);
     }
 
     function fillStep2() {
@@ -59,7 +59,7 @@
             function changeEventHandler(event) {
                 valueRadio = event.target.value;
                 if (valueRadio === "1") {
-                    buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", nul);
+                    buttonNextStep("#krok3 .nextStep", "#krok3", "#krok4", null);
                 } else {
                     buttonNextStep("#krok3 .nextStep", "#krok3", ".wynik", displayDataFromStep2);
                     invisibility("#tableWynik");
@@ -313,7 +313,9 @@
         step.addEventListener("click", function () {
             invisibility(begin);
             document.querySelector(target).classList.toggle("view");
-            functionIn();
+            if (functionIn) {
+                functionIn();
+            }
         }, false);
 
     }
@@ -341,10 +343,6 @@
         document.getElementById('costDps').innerHTML = odp.costDps;
         document.getElementById('costMieszkaniec').innerHTML = odp.mieszkaDps;
         document.getElementById('costGmina').innerHTML = odp.gminy;
-    }
-
-    function nul() {
-
     }
 
 })();
