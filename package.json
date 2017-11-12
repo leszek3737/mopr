@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/leszek3737/mopr2#readme",
   "dependencies": {
+    "gulp": "^3.9.1",
     "jquery": "^3.2.1"
   }
 }
