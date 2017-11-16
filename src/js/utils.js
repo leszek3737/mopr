@@ -23,7 +23,6 @@
 
     }
 
-    window.app.valueRadio = 0;
 
     window.app.invisibility = function (target) { // przenieść do step3
         var targetStep = document.querySelector(target);
@@ -41,10 +40,4 @@
         rod: [], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
         licznik: [], // ilość rodzin w poszczegulnych grupach 
     };
-
-    window.app.displayDataFromStep2 = function () {
-        document.getElementById('costDps').innerHTML = window.app.odp.costDps;
-        document.getElementById('costMieszkaniec').innerHTML = window.app.odp.mieszkaDps;
-        document.getElementById('costGmina').innerHTML = window.app.odp.gminy;
-    }
 })();

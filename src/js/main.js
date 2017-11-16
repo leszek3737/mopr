@@ -7,12 +7,10 @@
         window.app.fillStep1();
         window.app.fillStep2();
         window.app.fillStep4();
-        (function () { // do poprawy uprościć 
-            var ii = window.__iloscstopiniePok__;
-            for (var n = 0; n <= ii; n++) {
-                window.app.odp.rod[n] = 0;
-                window.app.odp.licznik[n] = 0;
-            }
-        }());
+
+        for (var n = 0; n <= window.__iloscstopiniePok__; n++) {
+            window.app.odp.rod[n] = 0;
+            window.app.odp.licznik[n] = 0;
+        }
     });
 })();

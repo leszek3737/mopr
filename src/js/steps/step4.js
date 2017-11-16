@@ -69,27 +69,58 @@
                 window.app.odp.odplRo[aw] = document.querySelector("#czlonekRodziny" + aw + " .dochGosDom").value;
                 displayDataFromStep4(aw);
                 calculationPayment(aw);
+
+
             }
+
+            //            document.querySelectorAll(".czlonekRodziny").forEach(function (czlonekRodzElem, index) {
+            //                window.app.odp.rodzi[index] = czlonekRodzElem.querySelector("select").value;
+            //                window.app.odp.iloscRo[index] = czlonekRodzElem.querySelector(".osGosDom").value;
+            //                window.app.odp.odplRo[index] = czlonekRodzElem.querySelector(".dochGosDom").value;
+            //                displayDataFromStep4(index);
+            //                calculationPayment(index);
+            //            });
+
             worriesPayment();
             degreeKinshipPay();
-            exchangeName();
-
+            exchangeName()
+            console.log("---");
             function displayDataFromStep4(n) {
                 document.querySelector("#WynikCzłonekRodziny" + n + " .wynikRodzaj").innerHTML = window.app.odp.rodzi[n];
                 document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOsGosDom").innerHTML = window.app.odp.iloscRo[n];
                 document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = window.app.odp.odplRo[n];
+
+
             }
 
             function exchangeName() {
+                console.log("dupa1", window.app.odp.licz );
                 for (var i = 0; i < window.app.odp.licz; i++) {
+                    console.log("dupa2", i, window.__iloscstopiniePok__);
                     for (var j = 0; j <= window.__iloscstopiniePok__; j++) {
+                        console.log("dupa3", j);
+                        var a = document.querySelector("#czlonekRodziny" + i + " select").value;
+                        console.log(a);
                         if (parseInt(window.app.odp.rodzi[i]) === j) {
-                            window.app.odp.rodzi[i] = window.__stopiniePok__[j].name;
-                            document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = window.app.odp.rodzi[i];
+                          document.querySelector("#WynikCzłonekRodziny" + n + " .wynikRodzaj").innerHTML = window.__stopiniePok__[j].name;  
+                            console.log("----");
+                            //                            window.app.odp.rodzi[i] = window.__stopiniePok__[j].name;
+                            //                            document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = window.app.odp.rodzi[i]
                         }
                     }
                 }
+                //                    for (i = 0; i < window.app.odp.licz; i++) {
+                //                        for (j = 0; j <= window.__iloscstopiniePok__; j++) {
+                //                            for (j = 0; j <= window.__iloscstopiniePok__; j++) {
+                //                                if (parseInt(window.app.odp.rodzi[aw]) === j) {
+                //                                    window.app.odp.rodzi[aw] = indow.__stopiniePok__[j].name
+                //                                }
+                //                            }
+                //                        }
+                //                    }
             }
+
+
 
             function calculationPayment(n) {
                 var ileR = window.app.odp.iloscRo[n];
@@ -159,8 +190,9 @@
                     window.app.displayDataFromStep2();
                 } else {
                     for (var e = window.app.odp.licz; n < e; n++) {
+                        
                         document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOdplatnosc").innerHTML = "0";
-                        exchangeName();
+
                         window.app.displayDataFromStep2();
                     }
 
@@ -168,8 +200,9 @@
 
                 function displayDataCalculation() {
                     var aw = 0;
-                    for (var i = window.app.odp.licz - 1; i >= 0; i-- && aw++) {
+                    for (var i = window.app.odp.licz - 2; i >= 0; i-- && aw++) {
                         document.querySelector("#WynikCzłonekRodziny" + aw + " .wynikOdplatnosc").innerHTML = window.app.odp.odplRo[aw];
+                        
                     }
 
                 }
