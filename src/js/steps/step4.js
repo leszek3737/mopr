@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-//console.log("dupa", );
+    //console.log("dupa", );
     window.app.fillStep4 = function () {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn");
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
@@ -109,12 +109,12 @@
             }
 
             function worriesPayment() {
-                var lic = window.app.odp.licz -1;
+                var lic = window.app.odp.licz - 1;
                 for (var n = 0; n <= lic; n++) {
                     var a = window.app.odp.rodzi[n];
                     window.app.odp.licznik[a] = window.app.odp.licznik[a] + 1;
                     window.app.odp.rod[a] = window.app.odp.rod[a] + window.app.odp.odplRo[n];
-                }                
+                }
             }
 
             function degreeKinshipPay() {
@@ -129,7 +129,7 @@
                     var partial = null;
                     var ma;
                     for (ma = 0; ma <= window.__iloscstopiniePok__; ma++) {
-                        
+
                         o = o - window.app.odp.rod[ma];
                         if (o > 0) {
                             full = ma;
@@ -138,7 +138,7 @@
                             partial = ma;
                             ma = window.__iloscstopiniePok__;
                         }
-                      
+
                     }
                     console.log("dupa1", full, partial);
                     if (full !== null) {
@@ -212,7 +212,7 @@
                             average2 = Math.round(average2 * 100) / 100;
                             window.app.odp.odplRo[i] = average2;
                             window.app.odp.gminy = window.app.odp.gminy - window.app.odp.odplRo[i];
-                            if (window.app.odp.gminy <= 0){
+                            if (window.app.odp.gminy <= 0) {
                                 window.app.odp.gminy = 0;
                             }
                         }

@@ -1,14 +1,16 @@
  .krok,
  .wynik {
      margin: 15px;
-     border: 1px solid black;
+     border: 1px solid #000;
      padding: 15px;
      width: 450px;
      height: 300px;
  }
 
- .krok table {
-     border: 1px solid black;
+ .krok {
+     table {
+         border: 1px solid #000;
+     }
  }
 
  input {
@@ -19,6 +21,8 @@
  p {
      margin: 0px;
  }
+
+
 
  fieldset {
      max-width: 800px;
@@ -37,12 +41,16 @@
      display: none
  }
 
- .krok.view,
- .wynik.view {
-     display: block;
+ .view,
+     {
+     &.wynik {
+         display: block;
+     }
+     &.krok {
+         display: block;
+     }
  }
 
  .nextStep {
      float: right;
-
  }
