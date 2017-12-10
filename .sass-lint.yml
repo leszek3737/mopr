@@ -1,0 +1,67 @@
+#   Severity
+#     - 0: wyłącznie 
+#     - 1: jako ostrzerzenie
+#     - 2: jako błąd 
+options:
+  # czy korzystać z 
+  merge-default-rules: false
+  # ładuj do formatu html 
+  formatter: html
+  # określa plik wyściowy 
+  output-file: 'raports/sass-lint.html'
+  # maxymalna ilość wyświetlanych błędów  
+  max-warnings: 10
+  
+
+# Rule Configuration
+rules:
+
+#nie rozumeim 
+  placeholder-in-extend: 0
+
+
+# deklaracjia mixiny przed 
+  mixins-before-declarations:
+  - 1
+  -
+    exclude: ['grid-media', 'media'] # allow @include grid-media(), @include media();
+
+## zezwól tylko na kolory hex
+  no-color-keywords: 1
+
+  #zabrania używania @debug
+  no-debug: 1
+  #zabrani urzywania @warn
+  no-warn: 0
+  #zabrania używania id
+  no-ids: 2
+# nie pozwala na zostawieniepudtych selektrów 
+  no-empty-rulesets:
+    - 1
+    #Wymusza zagnieźdzanie 
+  force-element-nesting: 1
+  #Wymusza zagnieźdzanie pseudoelemtów
+  force-pseudo-nesting: 1
+  #wymusz umieszcznie atrybutów w cudzysłowach 
+  attribute-quotes: 1
+#  border-zero: 0
+#  hex-notation: 1
+
+
+  property-units:
+    - 2
+    -
+      per-property: { font-size: ['rem'] }
+
+#  quotes:
+#    - 1
+#    -
+#      style: single
+
+
+
+  no-misspelled-properties:
+  - 1
+  -
+    'extra-properties':
+    - '-webkit-overflow-scrolling'
