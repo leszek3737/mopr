@@ -20,13 +20,14 @@
     "jquery": "^3.2.1"
   },
   "devDependencies": {
-    "autoprefixer": "^7.2.2",
+    "autoprefixer": "^7.2.3",
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.21.0",
     "cssnano": "^3.10.0",
+    "eslint-html-reporter": "^0.5.2",
     "eslint-plugin-css-modules": "^2.7.5",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
@@ -36,6 +37,7 @@
     "gulp-eslint": "^4.0.0",
     "gulp-html-replace": "^1.6.2",
     "gulp-htmllint": "0.0.14",
+    "gulp-imagemin": "^4.0.0",
     "gulp-load-plugins": "^1.5.0",
     "gulp-load-subtasks": "^1.1.2",
     "gulp-postcss": "^7.0.0",
@@ -43,9 +45,12 @@
     "gulp-sass": "^3.1.0",
     "gulp-sass-glob": "^1.0.8",
     "gulp-sass-lint": "^1.3.4",
-    "gulp-sourcemaps": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.2",
+    "gulp-strip-comments": "^2.5.1",
     "gulp-uglify": "^3.0.0",
+    "i": "^0.3.6",
     "jshint": "^2.9.5",
+    "npm": "^5.6.0",
     "run-sequence": "^2.2.0"
   }
 }
