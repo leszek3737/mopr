@@ -6,7 +6,7 @@
         function downloadDataToStep2() {
             var wyborDps = document.querySelector("#dps select").value;
             var dpsTym = window.__data__.dps[wyborDps];
-            var mieszTym = document.getElementById("dochMiesz").value;
+            var mieszTym = document.getElementById("incomeMieszkanca").value;
             window.app.odp.costDps = dpsTym.koszt;
             window.app.odp.mieszkaDps = Math.round(0.7 * mieszTym * 100) / 100;
             if (window.app.odp.mieszkaDps >= window.app.odp.costDps) {

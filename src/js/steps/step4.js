@@ -4,7 +4,7 @@
     window.app.fillStep4 = function () {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn");
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
-        window.app.buttonNextStep("#step4 .nextStep", "#step4", ".wynik", downloadDataToStep4);
+        window.app.buttonNextStep("#step4 .nextStep", "#step4", ".result", downloadDataToStep4);
 
         function addFamilyMember() {
             // step 4
@@ -27,7 +27,7 @@
             wynikTr.innerHTML += "<td class='wynikOdplatnosc'>-</td>";
             // usuwanie
             var table = document.querySelector("#step4 table");
-            var wynikTabele = document.querySelector(".wynik table");
+            var wynikTabele = document.querySelector(".result table");
 
             var removeFamilyMemberBtn = tr.querySelector(".removeFamilyMemberBtn");
             removeFamilyMemberBtn.addEventListener("click", function () {
@@ -38,7 +38,7 @@
 
             //dodawanie do  html
             document.querySelector("#step4 table").appendChild(tr);
-            document.querySelector(".wynik table").appendChild(wynikTr);
+            document.querySelector(".result table").appendChild(wynikTr);
             window.app.odp.licz = window.app.odp.licz + 1;
 
             function buttonRemove() {
