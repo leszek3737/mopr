@@ -7,18 +7,18 @@
             var wyborDps = document.querySelector("#dps select").value;
             var dpsTym = window.__data__.dps[wyborDps];
             var mieszTym = document.getElementById("incomeMieszkanca").value;
-            window.app.odp.costDps = dpsTym.koszt;
-            window.app.odp.mieszkaDps = Math.round(0.7 * mieszTym * 100) / 100;
-            if (window.app.odp.mieszkaDps >= window.app.odp.costDps) {
-                window.app.odp.mieszkaDps = window.app.odp.costDps;
+            window.app.odp.cost.dps = dpsTym.koszt;
+            window.app.odp.cost.mieszkaniec = Math.round(0.7 * mieszTym * 100) / 100;
+            if (window.app.odp.cost.mieszkaniec >= window.app.odp.cost.dps) {
+                window.app.odp.cost.mieszkaniec = window.app.odp.cost.dps;
             }
-            window.app.odp.gminy = window.app.odp.costDps - window.app.odp.mieszkaDps;
+            window.app.odp.cost.gminy = window.app.odp.cost.dps - window.app.odp.cost.mieszkaniec;
             window.app.fillStep3();
         }
     }
     window.app.displayDataFromStep2 = function () {
-        document.getElementById('costDps').innerHTML = window.app.odp.costDps;
-        document.getElementById('costMieszkaniec').innerHTML = window.app.odp.mieszkaDps;
-        document.getElementById('costGmina').innerHTML = window.app.odp.gminy;
+        document.getElementById('costDps').innerHTML = window.app.odp.cost.dps;
+        document.getElementById('costMieszkaniec').innerHTML = window.app.odp.cost.mieszkaniec;
+        document.getElementById('costGmina').innerHTML = window.app.odp.cost.gminy;
     }
 })();

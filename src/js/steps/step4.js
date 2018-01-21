@@ -118,7 +118,7 @@
             }
 
             function degreeKinshipPay() {
-                var o = window.app.odp.gminy;
+                var o = window.app.odp.cost.gminy;
                 var n = 0; //poziom pokrewieństwa +1 na którym się zakańcza 
                 var suma = 0;
                 for (var mw = 0; mw <= window.__data__.numberKinshipDegrees; mw++) {
@@ -181,7 +181,7 @@
                     for (var i = 0; mm >= i; i++) { // do każdego do jakiegoś poziomu 
                         for (var j = 0; window.app.odp.licz > j; j++) {
                             if (parseInt(window.app.odp.rodzi[j]) === i) {
-                                window.app.odp.gminy = window.app.odp.gminy - window.app.odp.odplRo[j];
+                                window.app.odp.cost.gminy = window.app.odp.cost.gminy - window.app.odp.odplRo[j];
                             }
                         }
                     }
@@ -197,23 +197,23 @@
 
 
                     for (i = 0; window.app.odp.licz > i; i++) {
-                        var average = window.app.odp.gminy / j;
+                        var average = window.app.odp.cost.gminy / j;
                         if (parseInt(window.app.odp.rodzi[i]) === m) {
                             if (window.app.odp.odplRo[i] < average) { //jeśli window.app.odpłatnośc rodziny jest mniejsza niż średnia 
-                                window.app.odp.gminy = window.app.odp.gminy - window.app.odp.odplRo[i]; // odejmij odejmij od rodzaju rodziny
+                                window.app.odp.cost.gminy = window.app.odp.cost.gminy - window.app.odp.odplRo[i]; // odejmij odejmij od rodzaju rodziny
                                 window.app.odp.rodzi[i] = null;
                                 j = j - 1;
                             }
                         }
                     }
-                    var average2 = window.app.odp.gminy / j;
+                    var average2 = window.app.odp.cost.gminy / j;
                     for (i = 0; window.app.odp.licz > i; i++) {
                         if (parseInt(window.app.odp.rodzi[i]) === m) {
                             average2 = Math.round(average2 * 100) / 100;
                             window.app.odp.odplRo[i] = average2;
-                            window.app.odp.gminy = window.app.odp.gminy - window.app.odp.odplRo[i];
-                            if (window.app.odp.gminy <= 0) {
-                                window.app.odp.gminy = 0;
+                            window.app.odp.cost.gminy = window.app.odp.cost.gminy - window.app.odp.odplRo[i];
+                            if (window.app.odp.cost.gminy <= 0) {
+                                window.app.odp.cost.gminy = 0;
                             }
                         }
                     }

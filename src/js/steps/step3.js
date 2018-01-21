@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     window.app.fillStep3 = function () {
-        if (!window.app.odp.gminy) {
+        if (!window.app.odp.cost.gminy) {
             var rodzTym = document.querySelector("#hasFamily");
             window.app.buttonNextStep("#step3 .nextStep", "#step3", ".result", window.app.displayDataFromStep2);
             window.app.invisibility("#tableResult");

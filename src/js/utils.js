@@ -20,7 +20,6 @@
                 functionIn();
             }
         }, false);
-
     }
 
 
@@ -30,9 +29,11 @@
     }
 
     window.app.odp = {
-        costDps: 0,
-        mieszkaDps: 0,
-        gminy: 0,
+        cost: {
+            dps: 0,
+            mieszkaniec: 0,
+            gminy: 0,
+        },
         licz: 0,
         rodzi: [], // rodzaj rodziny pobrany z pola
         odplRo: [], // odpłatność dansej rodziny 
