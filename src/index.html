@@ -4,35 +4,34 @@
 <head>
     <meta charset="utf-8">
     <title> koszy utrzymania miaeszkańca</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
     <!-- build:css -->
     <!-- endbuild -->
 </head>
 
 <body>
-    <section id="krok1" class="krok view">
-        <legend>Krok 1 - wybierz dom pomocy społecznej </legend>
+    <section id="step1" class="step view">
+        <legend>step 1 - wybierz dom pomocy społecznej </legend>
         <fieldset id="dps">
             <select name="dps"></select>
         </fieldset>
         <button class="nextStep">dalej</button>
     </section>
-    <section id="krok2" class="krok">
+    <section id="step2" class="step">
         <fieldset>
-            <legend>Krok 2 -Podaj przychód netto</legend>
+            <legend>step 2 -Podaj przychód netto</legend>
             <input type="number" id="dochMiesz" step="0.01" value="4000">
         </fieldset>
         <button class="nextStep">dalej</button>
     </section>
-    <section id="krok3" class="krok">
+    <section id="step3" class="step">
         <fieldset id="hasFamily">
-            <legend>Krok 3 - Czy mieszkaniec posiada żyjącą rodzinę ?(żonę, dzieci, wnuki, rodziców, dziadków itd.)</legend>
+            <legend>step 3 - Czy mieszkaniec posiada żyjącą rodzinę ?(żonę, dzieci, wnuki, rodziców, dziadków itd.)</legend>
             <label><input type="radio" name="rodzina" value="0"> nie </label>
             <label><input type="radio" name="rodzina" value="1"> tak</label>
         </fieldset>
         <button class="nextStep">dalej</button>
     </section>
-    <section id="krok4" class="krok">
+    <section id="step4" class="step">
         <table>
             <tr>
                 <th>Rodzaj pokrewieństwa</th>
@@ -69,55 +68,57 @@
         </fieldset>
     </section>
     <script>
-        window.__DPS__ = [{
-                id: 0,
-                koszt: 4000,
-                name: "DPS 1",
+        window.__data__ = {
+            dps: [{
+                    id: 0,
+                    koszt: 4000,
+                    name: "DPS 1",
+                },
+                {
+                    id: 1,
+                    koszt: 3900,
+                    name: "DPS 2",
+                },
+                {
+                    id: 2,
+                    koszt: 3900,
+                    name: "DPS 3",
+                }
+            ],
+            incomeCriterion: {
+                alone: 1902,
+                family: 1542
             },
-            {
-                id: 1,
-                koszt: 3900,
-                name: "DPS 2",
-            },
-            {
-                id: 2,
-                koszt: 3900,
-                name: "DPS 3",
-            }
-        ];
-        window.__kryteriumDoch__ = {
-            samotnie: 1902,
-            rodzina: 1542
+            numberKinshipDegrees: 4, // -1 
+            kinshipDegree: [{
+                    id: 0,
+                    name: "Małżonek",
+                    mustBeUnique: true,
+                },
+                {
+                    id: 1,
+                    name: "Dziecko",
+                    mustBeUnique: false,
+
+                },
+                {
+                    id: 2,
+                    name: "Wnuk",
+                    mustBeUnique: false,
+                },
+                {
+                    id: 3,
+                    name: "Rodzic",
+                    mustBeUnique: false,
+
+                },
+                {
+                    id: 4,
+                    name: "Dziadki",
+                    mustBeUnique: false,
+                },
+            ],
         }
-        window.__iloscstopiniePok__ = 4; // -1 
-        window.__stopiniePok__ = [{
-                id: 0,
-                name: "Małżonek",
-                mustBeUnique: true,
-            },
-            {
-                id: 1,
-                name: "Dziecko",
-                mustBeUnique: false,
-
-            },
-            {
-                id: 2,
-                name: "Wnuk",
-                mustBeUnique: false,
-            },
-            {
-                id: 3,
-                name: "Rodzic",
-                mustBeUnique: false,
-
-            },
-            {
-                id: 4,
-                name: "Dziadki",
-                mustBeUnique: false,
-            },
-        ]
 
     </script>
     <!-- build:jsLib -->

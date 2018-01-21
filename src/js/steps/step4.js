@@ -4,10 +4,10 @@
     window.app.fillStep4 = function () {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn");
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
-        window.app.buttonNextStep("#krok4 .nextStep", "#krok4", ".wynik", downloadDataToStep4);
+        window.app.buttonNextStep("#step4 .nextStep", "#step4", ".wynik", downloadDataToStep4);
 
         function addFamilyMember() {
-            // Krok 4
+            // step 4
             var tr = document.createElement("tr");
             tr.classList.add("czlonekRodziny");
             tr.id = ("czlonekRodziny" + window.app.odp.licz);
@@ -16,7 +16,7 @@
             tr.innerHTML += "<td><input class='dochGosDom' type='number' step='0,01' value='2000'></td>";
             tr.innerHTML += "<td><button class='removeFamilyMemberBtn' >usuń</button></td>";
             var select = tr.querySelector("select");
-            window.app.fillSelectDefaulOptions(select, window.__stopiniePok__);
+            window.app.fillSelectDefaulOptions(select, window.__data__.kinshipDegree);
             // wynik
             var wynikTr = document.createElement("tr");
             wynikTr.classList.add("WynikCzłonekRodziny");
@@ -26,7 +26,7 @@
             wynikTr.innerHTML += "<td class='wynikDochGosDom'>-</td>";
             wynikTr.innerHTML += "<td class='wynikOdplatnosc'>-</td>";
             // usuwanie
-            var table = document.querySelector("#krok4 table");
+            var table = document.querySelector("#step4 table");
             var wynikTabele = document.querySelector(".wynik table");
 
             var removeFamilyMemberBtn = tr.querySelector(".removeFamilyMemberBtn");
@@ -37,7 +37,7 @@
             }, false);
 
             //dodawanie do  html
-            document.querySelector("#krok4 table").appendChild(tr);
+            document.querySelector("#step4 table").appendChild(tr);
             document.querySelector(".wynik table").appendChild(wynikTr);
             window.app.odp.licz = window.app.odp.licz + 1;
 
@@ -93,12 +93,12 @@
                 var od = window.app.odp.odplRo[n];
 
                 if (ileR === "1") {
-                    od = od - window.__kryteriumDoch__.samotnie;
+                    od = od - window.__data__.incomeCriterion.alone;
                     if (od <= 0) {
                         od = 0;
                     }
                 } else {
-                    od = (od / ileR - window.__kryteriumDoch__.rodzina) * i;
+                    od = (od / ileR - window.__data__.incomeCriterion.family) * i;
                     if (od <= 0) {
                         od = 0;
 
@@ -121,14 +121,14 @@
                 var o = window.app.odp.gminy;
                 var n = 0; //poziom pokrewieństwa +1 na którym się zakańcza 
                 var suma = 0;
-                for (var mw = 0; mw <= window.__iloscstopiniePok__; mw++) {
+                for (var mw = 0; mw <= window.__data__.numberKinshipDegrees; mw++) {
                     suma = suma + window.app.odp.rod[mw];
                 }
                 if (suma > 0) {
                     var full = null;
                     var partial = null;
                     var ma;
-                    for (ma = 0; ma <= window.__iloscstopiniePok__; ma++) {
+                    for (ma = 0; ma <= window.__data__.numberKinshipDegrees; ma++) {
 
                         o = o - window.app.odp.rod[ma];
                         if (o > 0) {
@@ -136,7 +136,7 @@
                         }
                         if (o < 0) {
                             partial = ma;
-                            ma = window.__iloscstopiniePok__;
+                            ma = window.__data__.numberKinshipDegrees;
                         }
 
                     }
@@ -146,7 +146,7 @@
                     }
                     if (partial !== null) {
                         sendPatilPayment(partial);
-                        for (var j = partial; j < window.__iloscstopiniePok__;) {
+                        for (var j = partial; j < window.__data__.numberKinshipDegrees;) {
                             j = j + 1;
                             for (var i = 0; window.app.odp.licz > i; i++) {
                                 if (parseInt(window.app.odp.rodzi[i]) === j) {
@@ -222,10 +222,10 @@
 
             function exchangeName() {
                 for (var i = 0; i < window.app.odp.licz; i++) {
-                    for (var j = 0; j <= window.__iloscstopiniePok__; j++) {
+                    for (var j = 0; j <= window.__data__.numberKinshipDegrees; j++) {
                         var a = document.querySelector("#czlonekRodziny" + i + " select").value;
                         if (parseInt(a) === j) {
-                            document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = window.__stopiniePok__[j].name;
+                            document.querySelector("#WynikCzłonekRodziny" + i + " .wynikRodzaj").innerHTML = window.__data__.kinshipDegree[j].name;
                         }
                     }
                 }

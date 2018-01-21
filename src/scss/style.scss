@@ -1,4 +1,4 @@
- .krok,
+ .step,
  .wynik {
      margin: 15px;
      border: 1px solid #000;
@@ -7,7 +7,7 @@
      height: 300px;
  }
 
- .krok {
+ .step {
      table {
          border: 1px solid #000;
      }
@@ -36,7 +36,7 @@
      display: block;
  }
 
- .krok,
+ .step,
  .wynik {
      display: none
  }
@@ -46,7 +46,7 @@
      &.wynik {
          display: block;
      }
-     &.krok {
+     &.step {
          display: block;
      }
  }

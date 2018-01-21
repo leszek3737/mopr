@@ -1,11 +1,11 @@
 (function () {
     'use strict';
     window.app.fillStep2 = function () {
-        window.app.buttonNextStep("#krok2 .nextStep", "#krok2", "#krok3", downloadDataToStep2);
+        window.app.buttonNextStep("#step2 .nextStep", "#step2", "#step3", downloadDataToStep2);
 
         function downloadDataToStep2() {
             var wyborDps = document.querySelector("#dps select").value;
-            var dpsTym = window.__DPS__[wyborDps];
+            var dpsTym = window.__data__.dps[wyborDps];
             var mieszTym = document.getElementById("dochMiesz").value;
             window.app.odp.costDps = dpsTym.koszt;
             window.app.odp.mieszkaDps = Math.round(0.7 * mieszTym * 100) / 100;
