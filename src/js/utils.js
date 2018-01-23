@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     window.app.fillSelectDefaulOptions = function (container, list) {
         list.forEach(function (obj) {
             var option = document.createElement("option");
@@ -10,8 +9,8 @@
             container.appendChild(option);
         });
     }
-
-    window.app.buttonNextStep = function (button, begin, target, functionIn) { // button -adres buttonu,  begin - adres obecnego pozipomu, target = adres przyszłego, functionIn - funkcjia zawarta
+    //funkcjia nasłuchujeprzycisk przycisk button, w momęcie kliknięcia wykonuje funkcjie invisibility na begin, potem dodaje clase view(która wyświetla blok) do elemtu o selsektorze  target, potem wykonuje finkcjie zawartą - functionIn
+    window.app.buttonNextStep = function (button, begin, target, functionIn) {
         var step = document.querySelector(button);
         step.addEventListener("click", function () {
             window.app.invisibility(begin);
@@ -22,7 +21,7 @@
         }, false);
     }
 
-
+    //funkcjia ukrywa element prprzez podmienie klasy na nonW
     window.app.invisibility = function (target) { // przenieść do step3
         var targetStep = document.querySelector(target);
         targetStep.className = "nonW";
