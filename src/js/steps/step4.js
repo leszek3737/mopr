@@ -1,13 +1,11 @@
 (function () {
     'use strict';
-    //console.log("dupa", );
     window.app.fillStep4 = function () {
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn");
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
         window.app.buttonNextStep("#step4 .nextStep", "#step4", ".result", downloadDataToStep4);
-
+        //funkcji dodaje pola członków rodziny w kroku 4 jak wynikach końcowych; pozwala także na usniecie dadanych pól. Funkcji na początku utwarza element typu tr w tabelce w kroku 4 nadaje clase i id oraz tworzy odpowiednie pola w nim. Potem pobiera elament select oraz uruchamia na nim funkcjie fillSelectDefaulOptions. Potem utwarza element typu tr w tabelce w wyniku nadaje clase i id oraz tworzy odpowiednie pola w nim. Potem funkcjia dodaje nasłuch na przycisku removeFamilyMemberBtn który uruchamia funksje która usuwa z tabeli nie potrzbane rekordy oraz uruchamia funkcjie buttonRemove
         function addFamilyMember() {
-            // step 4
             var tr = document.createElement("tr");
             tr.classList.add("czlonekRodziny");
             tr.id = ("czlonekRodziny" + window.app.odp.licz);
@@ -40,7 +38,7 @@
             document.querySelector("#step4 table").appendChild(tr);
             document.querySelector(".result table").appendChild(wynikTr);
             window.app.odp.licz = window.app.odp.licz + 1;
-
+            // funkcjia wykrywa który elelment został usunięty i zamiania numeracjie pozostałych
             function buttonRemove() {
                 var removeElement = null;
                 var m = window.app.odp.licz - 1;
@@ -61,6 +59,7 @@
             }
         }
 
+        //funkcjia pobiera dane z pól w kroku 4  oraz uruchamia finkcjie: worriesPayment, degreeKinshipPay, exchangeName
         function downloadDataToStep4() {
             var aw = 0;
             for (var i = window.app.odp.licz - 1; i >= 0; i-- && aw++) { //pobieranie danych ze wszyskich pul
@@ -70,24 +69,17 @@
                 displayDataFromStep4(aw);
                 calculationPayment(aw);
             }
-
-            //            document.querySelectorAll(".czlonekRodziny").forEach(function (czlonekRodzElem, index) {
-            //                window.app.odp.rodzi[index] = czlonekRodzElem.querySelector("select").value;
-            //                window.app.odp.iloscRo[index] = czlonekRodzElem.querySelector(".osGosDom").value;
-            //                window.app.odp.odplRo[index] = czlonekRodzElem.querySelector(".dochGosDom").value;
-            //                displayDataFromStep4(index);
-            //                calculationPayment(index);
-            //            });
-
             worriesPayment();
             degreeKinshipPay();
             exchangeName()
 
+            //funkcjia pobrane dane z pól w kroku 4 wyświetla w wynikacha w tabelce
             function displayDataFromStep4(n) {
                 document.querySelector("#WynikCzłonekRodziny" + n + " .wynikOsGosDom").innerHTML = window.app.odp.iloscRo[n];
                 document.querySelector("#WynikCzłonekRodziny" + n + " .wynikDochGosDom").innerHTML = window.app.odp.odplRo[n];
             }
 
+            //funkcjia oblicza odpłatność rodzi w zależności ile soób znajduje się w gospodarstwie domowym 
             function calculationPayment(n) {
                 var ileR = window.app.odp.iloscRo[n];
                 var od = window.app.odp.odplRo[n];
@@ -108,6 +100,7 @@
                 window.app.odp.odplRo[n] = od;
             }
 
+            //funkcjia sumuje odpłatność danego stopina pokrewieństwa 
             function worriesPayment() {
                 var lic = window.app.odp.licz - 1;
                 for (var n = 0; n <= lic; n++) {
@@ -116,6 +109,7 @@
                     window.app.odp.rod[a] = window.app.odp.rod[a] + window.app.odp.odplRo[n];
                 }
             }
+
 
             function degreeKinshipPay() {
                 var o = window.app.odp.cost.gminy;
@@ -220,6 +214,7 @@
                 }
             }
 
+            //funkcjia wprowadza odpowiednie nazwy stopnia pokrewieństwa w tabalce w wynikach  
             function exchangeName() {
                 for (var i = 0; i < window.app.odp.licz; i++) {
                     for (var j = 0; j <= window.__data__.numberKinshipDegrees; j++) {

@@ -34,10 +34,15 @@
             gminy: 0,
         },
         licz: 0,
-        rodzi: [], // rodzaj rodziny pobrany z pola
-        odplRo: [], // odpłatność dansej rodziny 
-        iloscRo: [], // ilość osób w danej rodzinie
-        rod: [], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
-        licznik: [], // ilość rodzin w poszczegulnych grupach 
+        // rodzaj rodziny pobrany z pola
+        rodzi: [],
+        // odpłatność dansej rodziny
+        odplRo: [],
+        // ilość osób w danej rodzinie
+        iloscRo: [],
+        //odpłatnośc na wszyskich poziomach (pobrane odpRo)
+        rod: [],
+        // ilość rodzin w poszczegulnych grupach 
+        licznik: [],
     };
 })();
