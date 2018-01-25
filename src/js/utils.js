@@ -31,14 +31,21 @@
     window.app.odp = {
         cost: {
             dps: 0,
-            mieszkaniec: 0,
+            inhabitant: 0,
             gminy: 0,
+            // odpłatność dansej rodziny 
+            family: [],
+            //odpłatnośc na wszyskich poziomach (pobrane odpRo)
+            kinshipDegree: [],
         },
-        licz: 0,
-        rodzi: [], // rodzaj rodziny pobrany z pola
-        odplRo: [], // odpłatność dansej rodziny 
-        iloscRo: [], // ilość osób w danej rodzinie
-        rod: [], //odpłatnośc na wszyskich poziomach (pobrane odpRo)
-        licznik: [], // ilość rodzin w poszczegulnych grupach 
+        family: {
+            quantity: 0,
+            // rodzaj rodziny pobrany z pola
+            kinship: [],
+            // ilość osób w danej rodzinie
+            size: [],
+            // ilość rodzin w poszczegulnych grupach 
+            sameKinshipDegree: [],
+        },
     };
 })();

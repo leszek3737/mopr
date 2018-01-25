@@ -9,8 +9,8 @@
         window.app.fillStep4();
 
         for (var n = 0; n <= window.__data__.numberKinshipDegrees; n++) {
-            window.app.odp.rod[n] = 0;
-            window.app.odp.licznik[n] = 0;
+            window.app.odp.cost.kinshipDegree[n] = 0;
+            window.app.odp.family.sameKinshipDegree[n] = 0;
         }
     });
 })();
