@@ -5,6 +5,8 @@
         var addFamilyMemberBtn = document.querySelector(".addFamilyMemberBtn");
         addFamilyMemberBtn.addEventListener("click", addFamilyMember);
         window.app.buttonNextStep("#step4 .nextStep", "#step4", ".result", downloadDataToStep4);
+        var iFamyli = 0;
+        var elementOptions = window.__data__.kinshipDegree;
 
         function addFamilyMember() {
             // step 4
@@ -16,7 +18,13 @@
             tr.innerHTML += "<td><input class='dochGosDom' type='number' step='0,01' value='2000'></td>";
             tr.innerHTML += "<td><button class='removeFamilyMemberBtn' >usuń</button></td>";
             var select = tr.querySelector("select");
-            window.app.fillSelectDefaulOptions(select, window.__data__.kinshipDegree);
+            if (iFamyli != 0) {
+                elementOptions = window.__data__.kinshipDegree.filter(function checkAdult(age) {
+                    return age.mustBeUnique == false;
+                })
+            }
+            iFamyli++;
+            window.app.fillSelectDefaulOptions(select, elementOptions);
             // wynik
             var wynikTr = document.createElement("tr");
             wynikTr.classList.add("WynikCzłonekRodziny");
@@ -43,6 +51,10 @@
 
             function buttonRemove() {
                 var removeElement = null;
+                iFamyli--;
+                if (iFamyli === 0) {
+                    elementOptions = window.__data__.kinshipDegree
+                }
                 var m = window.app.odp.family.quantity - 1;
                 for (var i = 0; i < m; i++) {
                     var wiersz = document.querySelector("#czlonekRodziny" + i);
