@@ -145,7 +145,6 @@
                         }
 
                     }
-                    console.log("dupa1", full, partial);
                     if (full !== null) {
                         sendFullPayment(full);
                     }
